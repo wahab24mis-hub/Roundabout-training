@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>index.html</title>
+<meta name="description" content="منصة تدريب السائقين: دوار المسارين والوقوف الخلفي بزاوية ٩٠ درجة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@600&family=Noto+Sans+Ethiopic:wght@400;600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F3F8F4; --card:#FFFFFF; --fg:#0E2A1E; --muted:#4D6A5B; --line:#D3E3D8; --soft:#E9F3EC;
+  --hdr:#0A5C34; --road:#E4EBE6; --curb:#8CA096; --island:#CDE6D4;
+  --l1:#1B9A57; --l2:#0A3A28; --on-l:#FFFFFF; --bad:#C23A32; --sig:#E59A1F; --pri:#0A5C34; --on-pri:#FFFFFF;
+  --ok-bg:#D9F0E1; --ok-fg:#0F5132; --bad-bg:#FBE4E1; --bad-fg:#8F1F18; --info-bg:#E9F3EC; --info-fg:#0E2A1E;
+  --sig-bg:#FCEFD6; --sig-fg:#5E3B05; --pc:#6B7771;
+  --asph:#4A5650; --asph2:#56625C; --paint:#F4F7F5; --green-strip:#9CC7A9;
+  --car:#1FA35C; --car-glass:#CFEFDC; --trail:#9BF0BE; --okline:#5CE59A;
+  --gold:#B18E31; --gold-soft:rgba(177,142,49,.35);
+  --fb:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,sans-serif; --fd:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+  --bg:#0C1511; --card:#13201A; --fg:#E7F1EA; --muted:#9FB5A8; --line:#25382E; --soft:#1A2B22;
+  --hdr:#0F3D27; --road:#1F2B25; --curb:#5C7266; --island:#1F3A2B;
+  --l1:#4ADE80; --l2:#B7F0CF; --on-l:#0C1511; --bad:#F06A60; --sig:#F2B24A; --pri:#4ADE80; --on-pri:#0C1511;
+  --ok-bg:#15392A; --ok-fg:#8FE0B0; --bad-bg:#3F1D1A; --bad-fg:#F4A8A0; --info-bg:#1A2B22; --info-fg:#E7F1EA;
+  --sig-bg:#3B2C0F; --sig-fg:#F6CF86; --pc:#8D9993;
+  --asph:#222C27; --asph2:#2A3530; --paint:#E3EBE6; --green-strip:#1F3A2B;
+  --car:#34C474; --car-glass:#0F2A1C; --trail:#9BF0BE; --okline:#5CE59A;
+  --gold:#C9A443; --gold-soft:rgba(201,164,67,.35);
+  color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1511; --card:#13201A; --fg:#E7F1EA; --muted:#9FB5A8; --line:#25382E; --soft:#1A2B22;
+  --hdr:#0F3D27; --road:#1F2B25; --curb:#5C7266; --island:#1F3A2B;
+  --l1:#4ADE80; --l2:#B7F0CF; --on-l:#0C1511; --bad:#F06A60; --sig:#F2B24A; --pri:#4ADE80; --on-pri:#0C1511;
+  --ok-bg:#15392A; --ok-fg:#8FE0B0; --bad-bg:#3F1D1A; --bad-fg:#F4A8A0; --info-bg:#1A2B22; --info-fg:#E7F1EA;
+  --sig-bg:#3B2C0F; --sig-fg:#F6CF86; --pc:#8D9993;
+  --asph:#222C27; --asph2:#2A3530; --paint:#E3EBE6; --green-strip:#1F3A2B;
+  --car:#34C474; --car-glass:#0F2A1C; --trail:#9BF0BE; --okline:#5CE59A;
+  --gold:#C9A443; --gold-soft:rgba(201,164,67,.35);
+  color-scheme:dark;
+}
+
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);padding-block:12px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+/* Brand bar */
+.brand{display:flex;align-items:center;gap:18px;padding:6px 4px 16px;margin-bottom:18px;border-bottom:1px solid var(--line);position:relative}
+.brand::after{content:"";position:absolute;inset-block-end:-1px;inset-inline-start:0;width:120px;height:2px;background:var(--gold)}
+.brand img{display:block;height:52px;width:auto;flex:none}
+.brand .sep{width:1px;align-self:stretch;margin-block:6px;background:var(--gold-soft)}
+.brand .bt{min-width:0}
+.brand .bn{margin:0;font-family:var(--fd);font-size:19px;line-height:1.4;font-weight:600;color:var(--fg)}
+.brand .bs{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.app[lang="ur"] .brand .bn,.app[lang="ur"] .brand .bs{line-height:2}
+@media (max-width:560px){.brand{gap:12px}.brand img{height:38px}.brand .bn{font-size:16px}.brand .bs{display:none}}
+/* Hero decoration per module */
+.hero .deco{position:absolute;pointer-events:none;opacity:.16}
+.hero .rings{inset-block-start:-70px;inset-inline-end:-60px;width:300px;height:300px}
+.hero .bays{inset-block-start:-10px;inset-inline-end:-20px;width:320px;height:200px}
+.app[data-mod="rb"] .hero .bays,.app[data-mod="pk"] .hero .rings{display:none}
+/* Module switcher */
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 22px}
+.mtab{display:flex;align-items:center;gap:14px;text-align:start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--fg);cursor:pointer;min-width:0}
+.mtab:hover{border-color:var(--curb)}
+.mtab .ic{width:46px;height:46px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--soft);color:var(--pri)}
+.mtab .ic svg{width:26px;height:26px}
+.mtab .mt{display:block;font-family:var(--fd);font-size:17px;line-height:1.4;font-weight:600}
+.mtab .md{display:block;font-size:13px;line-height:1.5;color:var(--muted)}
+.app[lang="ur"] .mtab .mt,.app[lang="ur"] .mtab .md{line-height:2}
+.mtab[aria-selected="true"]{border-color:var(--pri);box-shadow:inset 0 0 0 1px var(--pri)}
+.mtab[aria-selected="true"] .ic{background:var(--pri);color:var(--on-pri)}
+.mod[hidden]{display:none}
+.app{max-width:1120px;margin:0 auto;font-family:var(--fb);font-size:16px;line-height:1.7}
+.app[lang="ar"]{--fb:"IBM Plex Sans Arabic","IBM Plex Sans",system-ui,sans-serif;--fd:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif}
+.app[lang="en"]{--fb:"IBM Plex Sans",system-ui,sans-serif;--fd:"IBM Plex Sans",system-ui,sans-serif}
+.app[lang="am"]{--fb:"Noto Sans Ethiopic","IBM Plex Sans",system-ui,sans-serif;--fd:"Noto Sans Ethiopic","IBM Plex Sans",system-ui,sans-serif}
+.app[lang="ur"]{--fb:"Noto Nastaliq Urdu","IBM Plex Sans Arabic",system-ui,sans-serif;--fd:"Noto Nastaliq Urdu","IBM Plex Sans Arabic",system-ui,sans-serif;line-height:2.2}
+button{font:inherit}
+button:focus-visible{outline:3px solid var(--sig);outline-offset:2px}
+.hero{position:relative;overflow:hidden;background:var(--hdr);color:#fff;border-radius:16px;padding:26px 24px;margin-bottom:22px;display:flex;flex-wrap:wrap;gap:18px 24px;align-items:flex-end;justify-content:space-between}
+.rings{position:absolute;inset-block-start:-70px;inset-inline-end:-60px;width:300px;height:300px;opacity:.16;pointer-events:none}
+.tt{position:relative;min-width:0;flex:1 1 360px}
+.eyebrow{font-size:13px;font-weight:600;margin:0 0 2px;letter-spacing:.04em;color:#B8F0CF}
+h1{font-family:var(--fd);font-size:34px;line-height:1.3;margin:0 0 6px;font-weight:600;text-wrap:balance;color:#fff}
+.app[lang="ur"] h1{line-height:2}
+.sub{margin:0;color:#E4F6EA;max-width:62ch}
+.by{margin:12px 0 0;font-size:14px;font-weight:600;color:#fff;padding-inline-start:10px;border-inline-start:3px solid #7BE0A6}
+.langs{position:relative;display:flex;gap:6px;flex-wrap:wrap}
+.langs button{font-family:"IBM Plex Sans Arabic","IBM Plex Sans","Noto Sans Ethiopic","Noto Nastaliq Urdu",system-ui,sans-serif;font-size:15px;line-height:1.6;min-height:40px;padding:6px 14px;border:1px solid rgba(255,255,255,.5);border-radius:999px;background:transparent;color:#fff;cursor:pointer}
+.langs button:hover{background:rgba(255,255,255,.12)}
+.langs button[aria-pressed="true"]{background:#fff;color:#0A5C34;border-color:#fff;font-weight:600}
+.grid{display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:start}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.lab{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px}
+.hint{font-size:13px;color:var(--muted);margin:-8px 0 14px}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;margin:0 0 14px}
+.seg button{font-size:15px;line-height:1.5;min-height:44px;padding:8px 10px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:10px;cursor:pointer}
+.seg button:hover{border-color:var(--curb)}
+.app[lang="ur"] .seg button{padding-block:4px;line-height:2}
+#entries button[aria-pressed="true"],#pk-sides button[aria-pressed="true"],#pk-dirs button[aria-pressed="true"]{background:var(--pri);border-color:var(--pri);color:#fff;font-weight:600}
+:root[data-theme="dark"] #entries button[aria-pressed="true"],:root[data-theme="dark"] #pk-sides button[aria-pressed="true"],#pk-dirs button[aria-pressed="true"]{color:#0C1511}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #entries button[aria-pressed="true"],:root:not([data-theme="light"]) #pk-sides button[aria-pressed="true"],#pk-dirs button[aria-pressed="true"]{color:#0C1511}}
+#exits button[data-lane="1"][aria-pressed="true"]{border-color:var(--l1);box-shadow:inset 0 0 0 1px var(--l1);color:var(--l1);font-weight:600}
+#exits button[data-lane="2"][aria-pressed="true"]{border-color:var(--l2);box-shadow:inset 0 0 0 1px var(--l2);color:var(--l2);font-weight:600}
+#modes button[data-m="0"][aria-pressed="true"],#pk-modes button[data-m="0"][aria-pressed="true"]{border-color:var(--ok-fg);color:var(--ok-fg);background:var(--ok-bg);font-weight:600}
+#modes button[data-m]:not([data-m="0"])[aria-pressed="true"],#pk-modes button[data-m]:not([data-m="0"])[aria-pressed="true"]{border-color:var(--bad-fg);color:var(--bad-fg);background:var(--bad-bg);font-weight:600}
+.scene{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer}
+.sv{font-family:"IBM Plex Sans Arabic","IBM Plex Sans","Noto Sans Ethiopic",system-ui,sans-serif}
+.road{fill:var(--road)}
+.curb{stroke:var(--curb);stroke-width:1.5;fill:none}
+.dash{stroke:var(--curb);stroke-width:1;stroke-dasharray:6 6;fill:none;opacity:.8}
+.band1{fill:none;stroke:var(--l1);stroke-opacity:.25;stroke-width:22}
+.band2{fill:none;stroke:var(--l2);stroke-opacity:.22;stroke-width:22}
+.island{fill:var(--island);stroke:var(--curb);stroke-width:1}
+.tag{fill:var(--card);stroke:var(--curb);stroke-width:1}
+.tagt{fill:var(--fg);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.lt{fill:var(--on-l);font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.l1f{fill:var(--l1)}.l2f{fill:var(--l2)}
+#trail{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 7}
+.dashbar{display:flex;justify-content:space-between;gap:10px;margin:10px 0}
+.lamp{display:flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px;line-height:1.6;color:var(--muted);background:var(--soft)}
+.lamp svg{width:22px;height:22px;fill:var(--curb);flex:none}
+.lamp.on{background:var(--sig-bg);border-color:var(--sig);color:var(--sig-fg)}
+.lamp.on svg{fill:var(--sig)}
+.cap{border-radius:12px;padding:12px 14px;min-height:92px;background:var(--info-bg);color:var(--info-fg)}
+.cap[data-k="g"]{background:var(--ok-bg);color:var(--ok-fg)}
+.cap[data-k="r"]{background:var(--bad-bg);color:var(--bad-fg)}
+.cap p{margin:0}
+.cap .ph{font-size:13px;font-weight:600}
+.cap .tx{font-size:16px;line-height:1.7}
+.flow{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px}
+.flow li{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:13px;line-height:1.5;background:var(--card);color:var(--muted);min-width:0}
+.flow .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;line-height:1;font-weight:600;background:var(--soft);color:var(--muted)}
+.flow li[data-s="cur"]{border-color:var(--pri);color:var(--fg)}
+.flow li[data-s="cur"] .n{background:var(--pri);color:#fff}
+.flow li[data-s="done"]{color:var(--fg)}
+.flow li[data-s="done"] .n{background:var(--ok-fg);color:var(--ok-bg)}
+.flow li[data-s="bad"]{border-color:var(--bad);background:var(--bad-bg);color:var(--bad-fg)}
+.flow li[data-s="bad"] .n{background:var(--bad-fg);color:var(--bad-bg)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.ctl button{font-size:14px;line-height:1.6;min-height:40px;padding:6px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);cursor:pointer}
+.ctl button:hover{border-color:var(--curb)}
+.ctl button[aria-pressed="true"]{background:var(--pri);color:#fff;border-color:var(--pri)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;line-height:1.6;color:var(--muted);margin:14px 0 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-inline-end:6px}
+.side{display:grid;gap:22px;min-width:0}
+h2{font-family:var(--fd);font-size:20px;line-height:1.4;margin:0 0 12px;font-weight:600;text-wrap:balance}
+.app[lang="ur"] h2{line-height:2}
+ol.rules{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+ol.rules li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start}
+ol.rules .n{width:28px;height:28px;border-radius:50%;background:var(--pri);color:#fff;font-weight:600;font-size:14px;line-height:1;display:grid;place-items:center;margin-top:3px}
+:root[data-theme="dark"] ol.rules .n{color:#0C1511}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) ol.rules .n{color:#0C1511}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.chip{font-size:14px;line-height:1.6;padding:2px 12px;border-radius:999px;border:1px solid}
+.chip.c1{border-color:var(--l1);color:var(--l1)}
+.chip.c2{border-color:var(--l2);color:var(--l2)}
+ul.errs{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+ul.errs li{padding:8px 12px;border-radius:10px;background:var(--bad-bg);color:var(--bad-fg);font-size:15px;line-height:1.7}
+.quiz{margin-top:22px}
+.qhead{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.qhead h2{margin:0}
+.qsub{margin:0;color:var(--muted);font-size:15px}
+.bar{height:6px;border-radius:3px;background:var(--soft);overflow:hidden;margin:0 0 16px}
+.bar i{display:block;height:100%;background:var(--pri);width:0}
+.qcount{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 4px}
+.qtext{font-family:var(--fd);font-size:19px;line-height:1.6;margin:0 0 12px;font-weight:600}
+.app[lang="ur"] .qtext{line-height:2.1}
+.opts{display:grid;gap:8px;max-width:720px}
+.opt{display:block;width:100%;text-align:start;font-size:16px;line-height:1.6;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);cursor:pointer}
+.app[lang="ur"] .opt{line-height:2}
+.opt:hover{border-color:var(--curb)}
+.opt[data-s="ok"]{background:var(--ok-bg);border-color:var(--ok-fg);color:var(--ok-fg);font-weight:600}
+.opt[data-s="no"]{background:var(--bad-bg);border-color:var(--bad-fg);color:var(--bad-fg)}
+.opt[data-s="lock"]{cursor:default;opacity:.75}
+.fb{margin:12px 0 0;max-width:720px;padding:10px 14px;border-radius:10px;background:var(--info-bg);color:var(--info-fg)}
+.fb b{display:block;font-size:13px}
+.qbtn{margin-top:14px;font-size:15px;line-height:1.6;min-height:42px;padding:6px 20px;border:1px solid var(--pri);border-radius:999px;background:var(--pri);color:#fff;cursor:pointer}
+:root[data-theme="dark"] .qbtn{color:#0C1511}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .qbtn{color:#0C1511}}
+.score{font-family:var(--fd);font-size:26px;line-height:1.5;margin:6px 0 4px;font-weight:600;color:var(--pri)}
+@media (prefers-reduced-motion:no-preference){.cap{transition:background .2s}.bar i{transition:width .3s}}
+
+/* ---- Parking module ---- */
+/* Scene */
+.scenewrap{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--asph)}
+.pscene{display:block;width:100%;height:auto;cursor:pointer;font-family:"IBM Plex Sans Arabic","IBM Plex Sans","Noto Sans Ethiopic",system-ui,sans-serif}
+.asph{fill:var(--asph)}
+.strip{fill:var(--green-strip)}
+.kerb{fill:none;stroke:var(--curb);stroke-width:1.2}
+.paint{stroke:var(--paint);stroke-width:1.4;fill:none;stroke-linecap:square}
+.cline{stroke:var(--paint);stroke-width:1.4;stroke-dasharray:7 6;fill:none;opacity:.9}
+.arrow{fill:none;stroke:var(--paint);stroke-width:1.4;opacity:.45;stroke-linecap:round;stroke-linejoin:round}
+.tbay{fill:var(--okline);opacity:.16}
+.tbayP{fill:var(--paint);opacity:.55;font-size:16px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.goal{fill:none;stroke:var(--okline);stroke-width:1;stroke-dasharray:3 3;opacity:.7}
+.hl{stroke:var(--sig);stroke-width:2.6;fill:none;opacity:0;stroke-linecap:square}
+.hl.on{opacity:1}
+.hl.ok{opacity:1;stroke:var(--okline)}
+.ptag circle{fill:var(--asph2);stroke:var(--paint);stroke-width:1;opacity:.85}
+.ptag text{fill:var(--paint);font-size:8px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.ptag.on circle{fill:var(--sig);stroke:var(--sig);opacity:1}
+.ptag.on text{fill:#2A1A00}
+#pk-trail{fill:none;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1.5 4.5;opacity:.85}
+#pk-sight{stroke:var(--sig);stroke-width:1.4;stroke-dasharray:3 3;fill:none}
+.pk{stroke:rgba(0,0,0,.18);stroke-width:.6}
+.pkg{fill:#2E3A35;opacity:.75}
+.tyre{fill:#151B18}
+#pk-carb{fill:var(--car);stroke:rgba(0,0,0,.25);stroke-width:.6}
+.glass{fill:var(--car-glass);opacity:.95}
+.mir{fill:var(--car)}
+#pk-mirR.on{fill:var(--sig)}
+#pk-markc{fill:none;stroke:var(--bad);stroke-width:2.4}
+
+/* Dashboard */
+.pdash{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.pill{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--soft);min-width:0}
+.pill .k{display:block;font-size:12px;font-weight:600;color:var(--muted);line-height:1.4}
+.pill .v{display:block;font-size:15px;font-weight:600;line-height:1.5;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app[lang="ur"] .pill .k,.app[lang="ur"] .pill .v{line-height:2}
+.pill.on{background:var(--sig-bg);border-color:var(--sig)}
+.pill.on .v{color:var(--sig-fg)}
+.gears{display:flex;gap:4px;direction:ltr}
+.gears span{width:22px;height:24px;border-radius:6px;display:grid;place-items:center;font:600 13px/1 "IBM Plex Sans",system-ui,sans-serif;color:var(--muted);border:1px solid var(--line);background:var(--card)}
+.gears span.on{background:var(--pri);color:var(--on-pri);border-color:var(--pri)}
+.gears span.r.on{background:var(--sig);border-color:var(--sig);color:#2A1A00}
+#pk-wheel{width:30px;height:30px;flex:none;color:var(--fg)}
+.pv{min-width:0}
+@media (max-width:560px){.pdash{grid-template-columns:1fr 1fr}.pdash .pill:first-child{grid-column:1 / -1}}
+
+.ctl #pk-bPause.next{background:var(--sig);border-color:var(--sig);color:#2A1A00;font-weight:600}
+#pk-modes{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.pkopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}
+@media (max-width:600px){.pkopts{grid-template-columns:minmax(0,1fr)}}
+#pk-sides,#pk-dirs{grid-template-columns:repeat(2,minmax(0,1fr))}
+#pk-sides button,#pk-dirs button{display:flex;align-items:center;justify-content:center;gap:10px}
+#pk-sides svg,#pk-dirs svg{width:30px;height:22px;flex:none}
+.lane text{fill:var(--paint);font-size:8.5px;font-weight:600;text-anchor:middle;dominant-baseline:central;opacity:.5}
+.lane path{fill:none;stroke:var(--paint);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.45}
+.lane.on text,.lane.on path{opacity:.95}
+.chip.pc{border-color:var(--pri);color:var(--pri)}
+.chip.s{border-color:var(--sig);color:var(--sig-fg);background:var(--sig-bg)}
+.app[lang="ur"] .cap .tx{line-height:2.2}
+
+</style>
+</head>
+<body>
+<div class="app" id="app" lang="ar" dir="rtl" data-mod="rb">
+  <div class="brand">
+    <img src="data:image/webp;base64,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" alt="SAPTCO سابتكو" width="667" height="144">
+    <span class="sep" aria-hidden="true"></span>
+    <div class="bt">
+      <p class="bn" id="brandName"></p>
+      <p class="bs" id="brandSub"></p>
+    </div>
+  </div>
+
+  <header class="hero">
+    <svg class="deco rings" viewBox="0 0 300 300" fill="none" stroke="#fff" aria-hidden="true">
+      <circle cx="150" cy="150" r="140" stroke-width="2"/>
+      <circle cx="150" cy="150" r="108" stroke-width="2" stroke-dasharray="10 10"/>
+      <circle cx="150" cy="150" r="76" stroke-width="2"/>
+      <circle cx="150" cy="150" r="44" stroke-width="2" stroke-dasharray="10 10"/>
+    </svg>
+    <svg class="deco bays" viewBox="0 0 320 200" fill="none" stroke="#fff" stroke-width="3" aria-hidden="true">
+      <path d="M10 150H310"/>
+      <path d="M20 150V30M70 150V30M120 150V30M170 150V30M220 150V30M270 150V30"/>
+      <path d="M10 178H310" stroke-dasharray="14 12"/>
+      <text x="145" y="98" fill="#fff" stroke="none" font-size="44" font-weight="600" font-family="IBM Plex Sans,system-ui,sans-serif" text-anchor="middle">P</text>
+    </svg>
+    <div class="tt">
+      <p class="eyebrow" id="hEyebrow"></p>
+      <h1 id="hTitle"></h1>
+      <p class="sub" id="hSub"></p>
+      <p class="by" id="hBy"></p>
+    </div>
+    <div class="langs" id="langs" role="group" aria-label="Language">
+      <button data-lang="ar">العربية</button>
+      <button data-lang="en">English</button>
+      <button data-lang="am">አማርኛ</button>
+      <button data-lang="ur">اردو</button>
+    </div>
+  </header>
+
+  <nav class="mods" id="mods" role="tablist">
+    <button class="mtab" role="tab" data-mod="rb" aria-controls="mod-rb"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.8"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/><path d="M15.6 6.6l1.6-.3-.2 1.7"/></svg></span><span><span class="mt"></span><span class="md"></span></span></button>
+    <button class="mtab" role="tab" data-mod="pk" aria-controls="mod-pk"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5"/><path d="M9.5 17V7.5h3.6a2.9 2.9 0 0 1 0 5.8H9.5"/></svg></span><span><span class="mt"></span><span class="md"></span></span></button>
+  </nav>
+
+  <div class="mod" id="mod-rb" role="tabpanel">
+<div class="grid">
+    <main class="card" id="stage">
+      <p class="lab" data-i="labEntry"></p>
+      <div class="seg" id="entries">
+        <button data-n="0"></button><button data-n="1"></button><button data-n="2"></button><button data-n="3"></button>
+      </div>
+      <p class="lab" data-i="labExit"></p>
+      <div class="seg" id="exits">
+        <button data-e="1" data-lane="1"></button>
+        <button data-e="2" data-lane="1"></button>
+        <button data-e="3" data-lane="2"></button>
+        <button data-e="4" data-lane="2"></button>
+      </div>
+      <p class="hint" data-i="hintExit"></p>
+      <p class="lab" data-i="labMode"></p>
+      <div class="seg" id="modes">
+        <button data-m="0"></button>
+        <button data-m="1"></button>
+        <button data-m="2"></button>
+      </div>
+
+      <svg id="scene" class="scene sv" viewBox="0 0 380 380" role="img" aria-label="Roundabout">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--curb)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        </defs>
+        <rect class="road" x="158" y="190" width="64" height="190"/>
+        <rect class="road" x="158" y="0" width="64" height="190"/>
+        <rect class="road" x="0" y="158" width="190" height="64"/>
+        <rect class="road" x="190" y="158" width="190" height="64"/>
+        <circle class="road" cx="190" cy="190" r="90"/>
+        <circle class="band1" cx="190" cy="190" r="79"/>
+        <circle class="band2" cx="190" cy="190" r="57"/>
+        <circle cx="190" cy="190" r="68" fill="none" stroke="var(--curb)" stroke-width="1" stroke-dasharray="6 6"/>
+        <circle class="island" cx="190" cy="190" r="46"/>
+        <path d="M218.2 179.7A30 30 0 0 0 161.8 179.7" fill="none" stroke="var(--curb)" stroke-width="1.5" marker-end="url(#ah)"/>
+        <path d="M161.8 200.3A30 30 0 0 0 218.2 200.3" fill="none" stroke="var(--curb)" stroke-width="1.5" marker-end="url(#ah)"/>
+        <path class="curb" d="M190 280V380M190 100V0M100 190H0M280 190H380"/>
+        <path class="dash" d="M174 278.6V380M206 278.6V380M174 101.4V0M206 101.4V0M101.4 174H0M101.4 206H0M278.6 174H380M278.6 206H380"/>
+        <path class="curb" d="M158 274.1V380M222 274.1V380M158 105.9V0M222 105.9V0M105.9 158H0M105.9 222H0M274.1 158H380M274.1 222H380"/>
+        <path class="curb" d="M222 274.1A90 90 0 0 0 274.1 222M274.1 158A90 90 0 0 0 222 105.9M158 105.9A90 90 0 0 0 105.9 158M105.9 222A90 90 0 0 0 158 274.1"/>
+        <g id="labs"></g>
+        <g id="rot" transform="rotate(0 190 190)">
+          <line x1="190" y1="292" x2="222" y2="292" stroke="var(--fg)" stroke-width="3"/>
+          <g id="signG" transform="translate(252,300)" opacity="0.55">
+            <polygon points="15.7,6.5 6.5,15.7 -6.5,15.7 -15.7,6.5 -15.7,-6.5 -6.5,-15.7 6.5,-15.7 15.7,-6.5" fill="#C23A32" stroke="#fff" stroke-width="1.5"/>
+            <text id="stopTxt" x="0" y="0" fill="#fff" font-size="10" font-weight="600" text-anchor="middle" dominant-baseline="central">STOP</text>
+          </g>
+          <path id="trail" d=""/>
+          <g id="pc" transform="translate(190,600)" opacity="0">
+            <rect x="-10" y="-5.5" width="20" height="11" rx="3" fill="var(--pc)"/>
+            <rect x="1" y="-4" width="6" height="8" rx="1.5" fill="var(--card)" opacity="0.85"/>
+          </g>
+          <g id="mark" style="display:none"><circle id="markc" cx="0" cy="0" r="14" fill="none" stroke="var(--bad)" stroke-width="2.5"/></g>
+          <g id="car" transform="translate(190,600)">
+            <rect id="carb" x="-10" y="-5.5" width="20" height="11" rx="3"/>
+            <rect x="1" y="-4" width="6" height="8" rx="1.5" fill="var(--card)" opacity="0.85"/>
+            <g id="sigL" style="display:none"><circle cx="9" cy="-6.5" r="2.6" fill="var(--sig)"/><circle cx="-9" cy="-6.5" r="2.6" fill="var(--sig)"/></g>
+            <g id="sigR" style="display:none"><circle cx="9" cy="6.5" r="2.6" fill="var(--sig)"/><circle cx="-9" cy="6.5" r="2.6" fill="var(--sig)"/></g>
+          </g>
+        </g>
+      </svg>
+
+      <div class="dashbar" dir="ltr">
+        <div class="lamp" id="lampL">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5L5 12l9 7v-4h5V9h-5z"/></svg>
+          <span data-i="sigL"></span>
+        </div>
+        <div class="lamp" id="lampR">
+          <span data-i="sigR"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5l9 7-9 7v-4H5V9h5z"/></svg>
+        </div>
+      </div>
+
+      <div class="cap" id="cap" data-k="a" aria-live="polite">
+        <p class="ph" id="ph"></p>
+        <p class="tx" id="tx"></p>
+      </div>
+
+      <ol class="flow" id="flow">
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+      </ol>
+
+      <div class="ctl">
+        <button id="bReplay"></button>
+        <button id="bPause"></button>
+        <button id="bSlow" aria-pressed="false"></button>
+      </div>
+
+      <div class="legend">
+        <span><i class="l1f"></i><span data-i="lg1"></span></span>
+        <span><i class="l2f"></i><span data-i="lg2"></span></span>
+        <span><i style="background:var(--pc)"></i><span data-i="lg3"></span></span>
+      </div>
+    </main>
+
+    <aside class="side">
+      <section class="card">
+        <h2 data-i="rulesT"></h2>
+        <ol class="rules" id="rules"></ol>
+        <div class="chips">
+          <span class="chip c1" data-i="chip1"></span>
+          <span class="chip c2" data-i="chip2"></span>
+        </div>
+      </section>
+      <section class="card">
+        <h2 data-i="errsT"></h2>
+        <ul class="errs" id="errs"></ul>
+      </section>
+    </aside>
+  </div>
+
+  <section class="card quiz" id="quiz">
+    <div class="qhead">
+      <h2 data-i="quizT"></h2>
+      <p class="qsub" data-i="quizSub"></p>
+    </div>
+    <div class="bar"><i id="qbar"></i></div>
+    <div id="qbody">
+      <p class="qcount" id="qcount"></p>
+      <p class="qtext" id="qtext"></p>
+      <div class="opts" id="qopts"></div>
+      <div class="fb" id="qfb" style="display:none"><b id="qfbh"></b><span id="qfbt"></span></div>
+      <button class="qbtn" id="qnext" style="display:none"></button>
+    </div>
+    <div id="qres" style="display:none">
+      <p class="score" id="qscore"></p>
+      <button class="qbtn" id="qretry"></button>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="mod" id="mod-pk" role="tabpanel" hidden>
+<div class="grid">
+    <main class="card" id="pk-stage">
+      <div class="pkopts">
+        <div>
+          <p class="lab" data-i="labDir"></p>
+          <div class="seg" id="pk-dirs">
+            <button data-dir="in" aria-pressed="true"><svg viewBox="0 0 30 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4H28M2 18H28" opacity=".5"/><path d="M5 11H25M20 6.5L25 11L20 15.5"/></svg><span></span></button>
+            <button data-dir="out" aria-pressed="false"><svg viewBox="0 0 30 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4H28M2 18H28" opacity=".5"/><path d="M25 11H5M10 6.5L5 11L10 15.5"/></svg><span></span></button>
+          </div>
+        </div>
+        <div>
+          <p class="lab" data-i="labSide"></p>
+          <div class="seg" id="pk-sides">
+            <button data-side="R" aria-pressed="true"><svg viewBox="0 0 30 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 4H28" stroke-dasharray="3 3"/><rect x="5" y="7" width="12" height="6" rx="1.8" fill="currentColor" stroke="none"/><path d="M18 21V15M28 21V15M18 15H28" opacity=".85"/></svg><span></span></button>
+            <button data-side="L" aria-pressed="false"><svg viewBox="0 0 30 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 18H28" stroke-dasharray="3 3"/><rect x="5" y="9" width="12" height="6" rx="1.8" fill="currentColor" stroke="none"/><path d="M18 1V7M28 1V7M18 7H28" opacity=".85"/></svg><span></span></button>
+          </div>
+        </div>
+      </div>
+      <p class="hint" data-i="hint"></p>
+      <p class="lab" data-i="labMode"></p>
+      <div class="seg" id="pk-modes">
+        <button data-m="0"></button>
+        <button data-m="1"></button>
+        <button data-m="2"></button>
+        <button data-m="3"></button>
+      </div>
+
+      <div class="scenewrap">
+        <svg id="pk-scene" class="pscene" viewBox="0 0 360 216" role="img" aria-label="Parking">
+          <rect class="asph" x="0" y="0" width="360" height="216"/>
+          <rect class="strip" x="0" y="0" width="360" height="17"/>
+          <rect class="strip" x="0" y="203" width="360" height="13"/>
+          <path class="kerb" d="M0 17H360M0 203H360"/>
+          <g class="lane" id="pk-laneIn"><path d="M14 128H34M29 123.5L34 128L29 132.5"/><text x="64" y="128"></text></g>
+          <g class="lane" id="pk-laneOut"><path d="M346 92H326M331 87.5L326 92L331 96.5"/><text x="296" y="92"></text></g>
+          <g id="pk-world">
+          <rect class="tbay" x="137.5" y="145" width="25" height="55"/>
+          <text class="tbayP upr" x="150" y="172">P</text>
+          <g id="pk-lot"></g>
+          <path class="cline" d="M0 110H360"/>
+          <g id="pk-hls"></g>
+          <rect id="pk-goal" class="goal" x="141" y="152" width="18" height="46" rx="3"/>
+          <g id="pk-tags"></g>
+          <g id="pk-parked"></g>
+          <path id="pk-trail" d=""/>
+          <path id="pk-sight" d="" style="display:none"/>
+          <g id="pk-car" transform="translate(-60,120)">
+            <rect class="tyre" x="-3" y="-10.2" width="6" height="3"/>
+            <rect class="tyre" x="-3" y="7.2" width="6" height="3"/>
+            <g id="pk-fwL" transform="translate(27,-8.7)"><rect class="tyre" x="-3" y="-1.5" width="6" height="3"/></g>
+            <g id="pk-fwR" transform="translate(27,8.7)"><rect class="tyre" x="-3" y="-1.5" width="6" height="3"/></g>
+            <rect id="pk-carb" x="-9.5" y="-9" width="46" height="18" rx="3.2"/>
+            <rect class="glass" x="19" y="-7.2" width="6" height="14.4" rx="1.6"/>
+            <rect class="glass" x="-6.5" y="-6.6" width="4" height="13.2" rx="1.4"/>
+            <rect class="mir" x="15.5" y="-11.8" width="3" height="2.8" rx=".8"/>
+            <rect class="mir" id="pk-mirR" x="15.5" y="9" width="3" height="2.8" rx=".8"/>
+          </g>
+          <g id="pk-mark" style="display:none"><circle id="pk-markc" cx="0" cy="0" r="9"/></g>
+        </g></svg>
+      </div>
+
+      <div class="pdash">
+        <div class="pill" id="pk-pGear">
+          <div class="pv"><span class="k" data-i="dGear"></span>
+            <span class="gears" id="pk-gears"><span data-g="P">P</span><span data-g="R" class="r">R</span><span data-g="N">N</span><span data-g="D">D</span></span>
+          </div>
+        </div>
+        <div class="pill" id="pk-pSteer">
+          <svg id="pk-wheel" viewBox="0 0 32 32" aria-hidden="true"><g id="pk-wheelG" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="16" cy="16" r="13"/><circle cx="16" cy="16" r="3.2"/><path d="M3.5 14.5L12.9 15.4M28.5 14.5L19.1 15.4M16 19.2V29"/><circle cx="16" cy="3" r="1.6" fill="currentColor" stroke="none"/></g></svg>
+          <div class="pv"><span class="k" data-i="dSteer"></span><span class="v" id="pk-vSteer"></span></div>
+        </div>
+        <div class="pill" id="pk-pLines">
+          <div class="pv"><span class="k" data-i="dLines"></span><span class="v" id="pk-vLines"></span></div>
+        </div>
+      </div>
+
+      <div class="cap" id="pk-cap" data-k="a" aria-live="polite">
+        <p class="ph" id="pk-ph"></p>
+        <p class="tx" id="pk-tx"></p>
+      </div>
+
+      <ol class="flow" id="pk-flow">
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+        <li><span class="n"></span><span class="l"></span></li>
+      </ol>
+
+      <div class="ctl">
+        <button id="pk-bReplay"></button>
+        <button id="pk-bPause"></button>
+        <button id="pk-bSlow" aria-pressed="false"></button>
+        <button id="pk-bStep" aria-pressed="false"></button>
+      </div>
+
+      <div class="legend">
+        <span><i style="background:var(--car)"></i><span data-i="lg1"></span></span>
+        <span><i style="background:#9BA6A0"></i><span data-i="lg2"></span></span>
+        <span><i style="background:var(--okline);opacity:.6"></i><span data-i="lg3"></span></span>
+        <span><i style="background:var(--sig)"></i><span data-i="lg4"></span></span>
+      </div>
+    </main>
+
+    <aside class="side">
+      <section class="card">
+        <h2 data-i="rulesT"></h2>
+        <ol class="rules" id="pk-rules"></ol>
+        <div class="chips">
+          <span class="chip pc" data-i="chip1"></span>
+          <span class="chip s" data-i="chip2"></span>
+          <span class="chip pc" data-i="chip3"></span>
+        </div>
+      </section>
+      <section class="card">
+        <h2 data-i="errsT"></h2>
+        <ul class="errs" id="pk-errs"></ul>
+      </section>
+    </aside>
+  </div>
+
+  <section class="card quiz" id="pk-quiz">
+    <div class="qhead">
+      <h2 data-i="quizT"></h2>
+      <p class="qsub" data-i="quizSub"></p>
+    </div>
+    <div class="bar"><i id="pk-qbar"></i></div>
+    <div id="pk-qbody">
+      <p class="qcount" id="pk-qcount"></p>
+      <p class="qtext" id="pk-qtext"></p>
+      <div class="opts" id="pk-qopts"></div>
+      <div class="fb" id="pk-qfb" style="display:none"><b id="pk-qfbh"></b><span id="pk-qfbt"></span></div>
+      <button class="qbtn" id="pk-qnext" style="display:none"></button>
+    </div>
+    <div id="pk-qres" style="display:none">
+      <p class="score" id="pk-qscore"></p>
+      <button class="qbtn" id="pk-qretry"></button>
+    </div>
+  </section>
+
+  </div>
+</div>
+<script>
+(function(){
+var D=Math.PI/180,CX=190,CY=190,SPD=85;
+var R={1:79,2:57},OFF={1:24,2:8};
+var EX={
+1:{lane:1,th:360-Math.asin(24/79)/D,wp:[290,214],end:[385,214]},
+2:{lane:1,th:360+Math.acos(24/79)/D,wp:[214,88],end:[214,-5]},
+3:{lane:2,th:540-Math.asin(24/57)/D,wp:[88,166],end:[-5,166]},
+4:{lane:2,th:720-Math.acos(-24/57)/D,wp:[166,292],end:[166,385]}
+};
+var STOPL=83,T1=1.5,HOLD=2.0,TP=T1+1.0;
+var ENT_A=[0,-90,180,90];
+var COR=[1,0,1,2,0,1];
+var DIG={ar:['','١','٢','٣','٤','٥','٦'],ur:['','۱','۲','۳','۴','۵','۶'],en:['','1','2','3','4','5','6'],am:['','1','2','3','4','5','6']};
+
+var I18N={
+ar:{dir:'rtl',
+eyebrow:'تدريب القيادة',title:'دوار المسارين',
+sub:'تدريب عملي على دخول الدوار والالتزام بالمسار والخروج منه بأمان.',by:'إعداد المدرب: عبدالوهاب الذبياني',
+labEntry:'اختر جهة الدخول',labExit:'اختر المخرج',labMode:'اختر الحالة',
+hintExit:'تُعدّ المخارج من أول مخرج بعد دخولك.',
+entries:['من الجنوب','من الشرق','من الشمال','من الغرب'],
+exitBtn:'المخرج {E} · المسار {L}',
+modes:['الطريقة الصحيحة','خطأ: تغيير المسار','خطأ: دخول دون توقف'],
+steps:['الاقتراب','توقف تام','إشارة يسار والدخول','الالتزام بالمسار','إشارة يمين والخروج'],
+sigL:'الإشارة اليسرى',sigR:'الإشارة اليمنى',
+ctl:{replay:'إعادة',pause:'إيقاف مؤقت',play:'تشغيل',slow:'بطيء'},
+lg1:'المسار ١ (اليمين، الدائرة الخارجية)',lg2:'المسار ٢ (اليسار، الدائرة الداخلية)',lg3:'سيارة داخل الدوار (لها الأولوية)',
+stop:'قف',sideR:'اليمين',sideL:'اليسار',
+rulesT:'القواعد الأساسية',
+rules:['قبل الدخول: توقف تام، وراقب السيارات داخل الدوار. الأولوية لمن هم بداخله فعلًا.','عند الدخول: شغّل الإشارة اليسرى.','داخل الدوار: التزم بمسارك ولا تغيّره حتى مخرجك.','عند الخروج من أي مسار: شغّل الإشارة اليمنى واخرج إلى المسار ١ من الطريق.'],
+chip1:'المخرج ١ و٢ · المسار ١',chip2:'المخرج ٣ و٤ · المسار ٢',
+errsT:'أخطاء شائعة',
+errs:['الدخول دون توقف تام.','عدم إعطاء الأولوية لمن داخل الدوار.','تغيير المسار داخل الدوار.','نسيان الإشارة اليسرى عند الدخول أو اليمنى عند الخروج.','الخروج من المسار ٢ دون التأكد من المسار ١.'],
+cap:{
+approach:['قبل الدوار','اختر المسار {L} ({S}) وخفف السرعة.'],
+stop:['توقف تام','قف تمامًا وراقب السيارات داخل الدوار. الأولوية لمن هم بداخله فعلًا.'],
+enter:['الدخول','الطريق خالٍ. شغّل الإشارة اليسرى وادخل الدوار.'],
+enterBad:['دخول دون توقف','لم تتوقف ولم تنتظر مرور السيارة التي داخل الدوار.'],
+ring:['داخل الدوار','التزم بالمسار {L} ولا تغيّره حتى مخرجك.'],
+ringBad:['خطأ','غيّرت مسارك داخل الدوار وقطعت على غيرك.'],
+signal:['قبل المخرج','شغّل الإشارة اليمنى الآن وانظر في المرآة.','وتأكد أن المسار ١ خالٍ قبل أن تقطعه.'],
+exit:['الخروج','اخرج إلى المسار ١ من الطريق.','أعطِ أولوية لسيارات المسار ١.'],
+done:['أحسنت','خرجت من المخرج {E} إلى المسار ١ بإشارة يمنى والتزمت بمسارك.'],
+doneBad:['التصحيح','ثبّت المقود والتزم بمسارك حتى المخرج.'],
+collide:['خطأ','دخلت دون توقف تام وكدت تصطدم بسيارة داخل الدوار. الأولوية لها.']},
+quizT:'اختبر نفسك',quizSub:'ست أسئلة قصيرة لقياس فهمك.',
+qUI:{count:'سؤال {i} من {n}',next:'التالي',result:'عرض النتيجة',ok:'إجابة صحيحة',no:'إجابة خاطئة',score:'نتيجتك {s} من {n}',retry:'إعادة الاختبار'},
+q:[
+{q:'قبل دخول الدوار ماذا يجب أن تفعل؟',o:['تخفف السرعة وتدخل إذا رأيت فرصة','تتوقف تمامًا وتراقب السيارات داخل الدوار، فالأولوية لها','تطلق البوق لتنبّه من بداخله'],e:'توقف تام ثم راقب. الأولوية لمن هم بداخل الدوار فعلًا.'},
+{q:'أي إشارة تشغّلها عند دخول الدوار؟',o:['اليسرى','اليمنى','لا إشارة'],e:'تشغّل الإشارة اليسرى عند الدخول.'},
+{q:'أي مسار يخدم المخرجين ٣ و٤؟',o:['المسار ١','المسار ٢','أي مسار'],e:'المخرج ١ و٢ من المسار ١، والمخرج ٣ و٤ من المسار ٢.'},
+{q:'أي إشارة تشغّلها عند الخروج من أي مسار؟',o:['اليسرى','لا إشارة','اليمنى'],e:'تشغّل الإشارة اليمنى وتخرج إلى المسار ١ من الطريق.'},
+{q:'أنت في المسار ٢ وتقترب من مخرجك. ماذا تفعل؟',o:['تتأكد أن المسار ١ خالٍ قبل أن تقطعه','تخرج مباشرة فالمخرج له الأولوية','تسرع حتى تسبق السيارات'],e:'سيارات المسار ١ لها الأولوية، فتأكد منها قبل الخروج.'},
+{q:'هل يجوز تغيير المسار داخل الدوار؟',o:['نعم إذا لم يكن أحد قريبًا','لا، الزم مسارك حتى مخرجك','نعم للاستعداد للمخرج'],e:'الزم مسارك ولا تغيّره حتى مخرجك.'}]},
+en:{dir:'ltr',
+eyebrow:'Driver training',title:'Roundabout lanes',
+sub:'Practical training on entering a roundabout, holding your lane and exiting safely.',by:'Prepared by trainer Abdulwahab Al-Dhubayani',
+labEntry:'Choose the entry',labExit:'Choose the exit',labMode:'Choose the scenario',
+hintExit:'Exits are counted from the first exit after your entry.',
+entries:['From the south','From the east','From the north','From the west'],
+exitBtn:'Exit {E} · Lane {L}',
+modes:['Correct method','Mistake: lane change','Mistake: no full stop'],
+steps:['Approach','Full stop','Left signal, enter','Hold your lane','Right signal, exit'],
+sigL:'Left signal',sigR:'Right signal',
+ctl:{replay:'Replay',pause:'Pause',play:'Play',slow:'Slow'},
+lg1:'Lane 1 (right, outer circle)',lg2:'Lane 2 (left, inner circle)',lg3:'Vehicle inside (has priority)',
+stop:'STOP',sideR:'right',sideL:'left',
+rulesT:'Key rules',
+rules:['Before entering: stop completely and watch the vehicles inside. Priority belongs to those already in the roundabout.','When entering: turn on the left signal.','Inside: hold your lane and do not change it until your exit.','When exiting from any lane: turn on the right signal and exit into lane 1 of the road.'],
+chip1:'Exits 1 and 2 · Lane 1',chip2:'Exits 3 and 4 · Lane 2',
+errsT:'Common mistakes',
+errs:['Entering without a full stop.','Not giving way to traffic inside.','Changing lanes inside the roundabout.','Forgetting the left signal at entry or the right signal at exit.','Exiting from lane 2 without checking lane 1.'],
+cap:{
+approach:['Before the roundabout','Choose lane {L} ({S}) and slow down.'],
+stop:['Full stop','Stop completely and watch the vehicles inside. Priority belongs to those already in the roundabout.'],
+enter:['Entering','The way is clear. Turn on the left signal and enter.'],
+enterBad:['Entering without stopping','You did not stop and did not wait for the vehicle already inside.'],
+ring:['Inside','Stay in lane {L} until your exit. Do not change lanes.'],
+ringBad:['Mistake','You changed lanes inside the roundabout and cut across other traffic.'],
+signal:['Before the exit','Turn on the right signal now and check your mirror.','Make sure lane 1 is clear before you cross it.'],
+exit:['Exiting','Exit into lane 1 of the road.','Give way to vehicles in lane 1.'],
+done:['Well done','You exited at exit {E} into lane 1 with the right signal on, holding your lane.'],
+doneBad:['Correction','Keep the wheel steady and hold your lane until your exit.'],
+collide:['Mistake','You entered without a full stop and nearly hit a vehicle already inside. It has priority.']},
+quizT:'Test yourself',quizSub:'Six short questions to check your understanding.',
+qUI:{count:'Question {i} of {n}',next:'Next',result:'See result',ok:'Correct',no:'Not quite',score:'Your score: {s} of {n}',retry:'Retry quiz'},
+q:[
+{q:'What must you do before entering a roundabout?',o:['Slow down and enter if you see a gap','Stop completely and watch vehicles inside; they have priority','Sound the horn to warn those inside'],e:'Stop completely, then watch. Priority belongs to vehicles already inside.'},
+{q:'Which signal do you use when entering?',o:['Left','Right','No signal'],e:'Turn on the left signal when entering.'},
+{q:'Which lane serves exits 3 and 4?',o:['Lane 1','Lane 2','Either lane'],e:'Exits 1 and 2 use lane 1; exits 3 and 4 use lane 2.'},
+{q:'Which signal do you use when leaving from any lane?',o:['Left','No signal','Right'],e:'Turn on the right signal and exit into lane 1 of the road.'},
+{q:'You are in lane 2 and near your exit. What do you do?',o:['Check that lane 1 is clear before crossing it','Exit straight away; the exit has priority','Speed up to get ahead of other cars'],e:'Lane 1 traffic has priority, so check it before you exit.'},
+{q:'May you change lanes inside the roundabout?',o:['Yes, if nobody is close','No. Hold your lane until your exit','Yes, to prepare for the exit'],e:'Hold your lane and do not change it until your exit.'}]},
+am:{dir:'ltr',
+eyebrow:'የመንዳት ስልጠና',title:'የክብ መንገድ መስመሮች',
+sub:'ወደ ክብ መንገድ መግባት፣ በመስመር መቆየት እና በደህና መውጣት የሚያስተምር ተግባራዊ ስልጠና።',by:'አዘጋጅ አሰልጣኝ፡ Abdulwahab Al-Dhubayani',
+labEntry:'የመግቢያውን አቅጣጫ ይምረጡ',labExit:'መውጫውን ይምረጡ',labMode:'ሁኔታውን ይምረጡ',
+hintExit:'መውጫዎች የሚቆጠሩት ከገቡ በኋላ ካለው የመጀመሪያ መውጫ ነው።',
+entries:['ከደቡብ','ከምስራቅ','ከሰሜን','ከምዕራብ'],
+exitBtn:'መውጫ {E} · መስመር {L}',
+modes:['ትክክለኛ አሠራር','ስህተት፡ መስመር መቀየር','ስህተት፡ ሳያቆሙ መግባት'],
+steps:['መቅረብ','ሙሉ በሙሉ ማቆም','የግራ ምልክት፣ መግባት','በመስመር መቆየት','የቀኝ ምልክት፣ መውጣት'],
+sigL:'የግራ ምልክት',sigR:'የቀኝ ምልክት',
+ctl:{replay:'እንደገና',pause:'አቁም',play:'ቀጥል',slow:'ቀስ ብሎ'},
+lg1:'መስመር 1 (ቀኝ፣ ውጫዊ ክብ)',lg2:'መስመር 2 (ግራ፣ ውስጣዊ ክብ)',lg3:'በውስጥ ያለ ተሽከርካሪ (ቅድሚያ አለው)',
+stop:'ቁም',sideR:'ቀኝ',sideL:'ግራ',
+rulesT:'ዋና ደንቦች',
+rules:['ከመግባት በፊት፡ ሙሉ በሙሉ ያቁሙ እና በውስጥ ያሉ ተሽከርካሪዎችን ይመልከቱ። ቅድሚያ አስቀድመው በውስጥ ላሉት ነው።','ሲገቡ፡ የግራ ምልክት ያብሩ።','በውስጥ፡ በመስመርዎ ይቆዩ እና እስከ መውጫዎ አይቀይሩ።','ከማንኛውም መስመር ሲወጡ፡ የቀኝ ምልክት ያብሩ እና ወደ መንገዱ መስመር 1 ይውጡ።'],
+chip1:'መውጫ 1 እና 2 · መስመር 1',chip2:'መውጫ 3 እና 4 · መስመር 2',
+errsT:'የተለመዱ ስህተቶች',
+errs:['ሙሉ በሙሉ ሳያቆሙ መግባት።','በውስጥ ላሉ ተሽከርካሪዎች ቅድሚያ አለመስጠት።','በክብ መንገዱ ውስጥ መስመር መቀየር።','ሲገቡ የግራ ወይም ሲወጡ የቀኝ ምልክት መርሳት።','ከመስመር 2 ሲወጡ መስመር 1ን ሳያረጋግጡ መውጣት።'],
+cap:{
+approach:['ከክብ መንገዱ በፊት','መስመር {L} ({S}) ይምረጡ እና ፍጥነት ይቀንሱ።'],
+stop:['ሙሉ በሙሉ ማቆም','ሙሉ በሙሉ ቆመው በክብ መንገዱ ውስጥ ያሉትን ተሽከርካሪዎች ይመልከቱ። ቅድሚያ አስቀድመው በውስጡ ላሉት ነው።'],
+enter:['መግባት','መንገዱ ነጻ ነው። የግራ ምልክት አብርተው ይግቡ።'],
+enterBad:['ሳያቆሙ መግባት','አላቆሙም፣ በውስጥ ያለው ተሽከርካሪ እስኪያልፍም አልጠበቁም።'],
+ring:['በክብ መንገዱ ውስጥ','እስከ መውጫዎ ድረስ በመስመር {L} ይቆዩ። መስመር አይቀይሩ።'],
+ringBad:['ስህተት','በክብ መንገዱ ውስጥ መስመር ቀይረው የሌሎችን መንገድ ቆረጡ።'],
+signal:['ከመውጫው በፊት','አሁን የቀኝ ምልክት አብርተው መስታወቱን ይመልከቱ።','መስመር 1ን ከማቋረጥዎ በፊት ነጻ መሆኑን ያረጋግጡ።'],
+exit:['መውጣት','ወደ መንገዱ መስመር 1 ይውጡ።','ለመስመር 1 ተሽከርካሪዎች ቅድሚያ ይስጡ።'],
+done:['በጣም ጥሩ','በመውጫ {E} ወደ መስመር 1 በቀኝ ምልክት ወጡ፣ በመስመርዎም ቆዩ።'],
+doneBad:['ማስተካከያ','መሪውን አረጋግተው እስከ መውጫዎ በመስመርዎ ይቆዩ።'],
+collide:['ስህተት','ሙሉ በሙሉ ሳያቆሙ ገብተው በውስጥ ካለ ተሽከርካሪ ጋር ሊጋጩ ነበር። ቅድሚያ የእሱ ነው።']},
+quizT:'ራስዎን ይፈትሹ',quizSub:'ግንዛቤዎን የሚፈትሹ ስድስት አጫጭር ጥያቄዎች።',
+qUI:{count:'ጥያቄ {i} ከ {n}',next:'ቀጣይ',result:'ውጤት ይመልከቱ',ok:'ትክክል',no:'ስህተት',score:'ውጤትዎ፦ {s} ከ {n}',retry:'ፈተናውን ድገም'},
+q:[
+{q:'ወደ ክብ መንገድ ከመግባትዎ በፊት ምን ማድረግ አለብዎት?',o:['ፍጥነት ቀንሰው ክፍተት ካዩ መግባት','ሙሉ በሙሉ ቆሞ በውስጥ ያሉ ተሽከርካሪዎችን መመልከት፤ ቅድሚያ የእነሱ ነው','በውስጥ ያሉትን ለማስጠንቀቅ ሆርን መንፋት'],e:'ሙሉ በሙሉ ያቁሙ እና ይመልከቱ። ቅድሚያ አስቀድመው በውስጥ ላሉት ነው።'},
+{q:'ሲገቡ የትኛውን ምልክት ያበራሉ?',o:['ግራ','ቀኝ','ምንም ምልክት አይኖርም'],e:'ሲገቡ የግራ ምልክት ያብሩ።'},
+{q:'መውጫ 3 እና 4ን የሚያገለግለው የትኛው መስመር ነው?',o:['መስመር 1','መስመር 2','ማንኛውም መስመር'],e:'መውጫ 1 እና 2 መስመር 1፣ መውጫ 3 እና 4 መስመር 2 ይጠቀማሉ።'},
+{q:'ከማንኛውም መስመር ሲወጡ የትኛውን ምልክት ያበራሉ?',o:['ግራ','ምንም ምልክት አይኖርም','ቀኝ'],e:'የቀኝ ምልክት ያብሩ እና ወደ መንገዱ መስመር 1 ይውጡ።'},
+{q:'በመስመር 2 ላይ ሆነው ወደ መውጫዎ ተቃርበዋል። ምን ያደርጋሉ?',o:['መስመር 1ን ከማቋረጥ በፊት ነጻ መሆኑን ማረጋገጥ','ወዲያውኑ መውጣት፤ መውጫው ቅድሚያ አለው','ሌሎችን ለመቅደም ፍጥነት መጨመር'],e:'የመስመር 1 ተሽከርካሪዎች ቅድሚያ አላቸው፤ ከመውጣትዎ በፊት ያረጋግጡ።'},
+{q:'በክብ መንገዱ ውስጥ መስመር መቀየር ይፈቀዳል?',o:['አዎ፣ ማንም ካልቀረበ','አይፈቀድም። እስከ መውጫዎ በመስመርዎ ይቆዩ','አዎ፣ ለመውጫ ለመዘጋጀት'],e:'በመስመርዎ ይቆዩ፣ እስከ መውጫዎ አይቀይሩ።'}]},
+ur:{dir:'rtl',
+eyebrow:'ڈرائیونگ تربیت',title:'راؤنڈ اباؤٹ کی لینز',
+sub:'راؤنڈ اباؤٹ میں داخل ہونے، اپنی لین میں رہنے اور محفوظ طریقے سے نکلنے کی عملی تربیت۔',by:'تیار کردہ: ٹرینر عبدالوہاب الذبیانی',
+labEntry:'داخلے کی سمت منتخب کریں',labExit:'اخراج منتخب کریں',labMode:'صورتِ حال منتخب کریں',
+hintExit:'اخراج داخل ہونے کے بعد پہلے اخراج سے گنے جاتے ہیں۔',
+entries:['جنوب سے','مشرق سے','شمال سے','مغرب سے'],
+exitBtn:'اخراج {E} · لین {L}',
+modes:['درست طریقہ','غلطی: لین بدلنا','غلطی: مکمل رکے بغیر داخل ہونا'],
+steps:['قریب پہنچنا','مکمل رکنا','بایاں اشارہ، داخل ہونا','لین میں رہنا','دایاں اشارہ، نکلنا'],
+sigL:'بایاں اشارہ',sigR:'دایاں اشارہ',
+ctl:{replay:'دوبارہ',pause:'روکیں',play:'چلائیں',slow:'آہستہ'},
+lg1:'لین 1 (دائیں، بیرونی دائرہ)',lg2:'لین 2 (بائیں، اندرونی دائرہ)',lg3:'اندر موجود گاڑی (ترجیح اسی کی ہے)',
+stop:'رکیں',sideR:'دائیں',sideL:'بائیں',
+rulesT:'بنیادی اصول',
+rules:['داخل ہونے سے پہلے: مکمل رکیں اور اندر موجود گاڑیوں کو دیکھیں۔ ترجیح ان کی ہے جو پہلے سے اندر ہیں۔','داخل ہوتے وقت: بایاں اشارہ دیں۔','اندر: اپنی لین میں رہیں اور اخراج تک اسے نہ بدلیں۔','کسی بھی لین سے نکلتے وقت: دایاں اشارہ دیں اور سڑک کی لین 1 میں نکلیں۔'],
+chip1:'اخراج 1 اور 2 · لین 1',chip2:'اخراج 3 اور 4 · لین 2',
+errsT:'عام غلطیاں',
+errs:['مکمل رکے بغیر داخل ہونا۔','اندر موجود ٹریفک کو راستہ نہ دینا۔','دوار کے اندر لین بدلنا۔','داخل ہوتے وقت بایاں یا نکلتے وقت دایاں اشارہ بھول جانا۔','لین 2 سے نکلتے وقت لین 1 کو چیک نہ کرنا۔'],
+cap:{
+approach:['راؤنڈ اباؤٹ سے پہلے','لین {L} ({S}) منتخب کریں اور رفتار کم کریں۔'],
+stop:['مکمل رکیں','مکمل طور پر رک جائیں اور دوار کے اندر موجود گاڑیوں کو دیکھیں۔ ترجیح ان کی ہے جو پہلے سے اندر ہیں۔'],
+enter:['داخل ہونا','راستہ صاف ہے۔ بایاں اشارہ دیں اور داخل ہوں۔'],
+enterBad:['رکے بغیر داخل ہونا','آپ نہ رکے اور اندر موجود گاڑی کے گزرنے کا انتظار بھی نہیں کیا۔'],
+ring:['دوار کے اندر','اپنے اخراج تک لین {L} میں رہیں۔ لین نہ بدلیں۔'],
+ringBad:['غلطی','آپ نے دوار کے اندر لین بدلی اور دوسروں کا راستہ کاٹا۔'],
+signal:['اخراج سے پہلے','اب دایاں اشارہ دیں اور آئینہ دیکھیں۔','لین 1 کو کاٹنے سے پہلے اس کے خالی ہونے کی تصدیق کریں۔'],
+exit:['نکلنا','سڑک کی لین 1 میں نکلیں۔','لین 1 کی گاڑیوں کو راستہ دیں۔'],
+done:['شاباش','آپ اخراج {E} سے دایاں اشارہ دے کر لین 1 میں نکلے اور اپنی لین میں رہے۔'],
+doneBad:['اصلاح','اسٹیئرنگ مضبوط رکھیں اور اخراج تک اپنی لین میں رہیں۔'],
+collide:['غلطی','آپ بغیر مکمل رکے داخل ہوئے اور دوار کے اندر موجود گاڑی سے ٹکراتے ٹکراتے بچے۔ ترجیح اسی کی تھی۔']},
+quizT:'خود کو آزمائیں',quizSub:'آپ کی سمجھ جانچنے کے لیے چھ مختصر سوالات۔',
+qUI:{count:'سوال {i} از {n}',next:'اگلا',result:'نتیجہ دیکھیں',ok:'درست',no:'غلط',score:'آپ کا اسکور: {s} از {n}',retry:'ٹیسٹ دوبارہ دیں'},
+q:[
+{q:'راؤنڈ اباؤٹ میں داخل ہونے سے پہلے کیا کرنا چاہیے؟',o:['رفتار کم کر کے خالی جگہ ملنے پر داخل ہو جائیں','مکمل رک کر اندر موجود گاڑیوں کو دیکھیں، ترجیح انہی کی ہے','اندر والوں کو خبردار کرنے کے لیے ہارن بجائیں'],e:'مکمل رکیں پھر دیکھیں۔ ترجیح ان کی ہے جو پہلے سے اندر ہیں۔'},
+{q:'داخل ہوتے وقت کون سا اشارہ دیتے ہیں؟',o:['بایاں','دایاں','کوئی اشارہ نہیں'],e:'داخل ہوتے وقت بایاں اشارہ دیں۔'},
+{q:'اخراج 3 اور 4 کے لیے کون سی لین ہے؟',o:['لین 1','لین 2','کوئی بھی لین'],e:'اخراج 1 اور 2 لین 1 سے، اخراج 3 اور 4 لین 2 سے ہیں۔'},
+{q:'کسی بھی لین سے نکلتے وقت کون سا اشارہ دیتے ہیں؟',o:['بایاں','کوئی اشارہ نہیں','دایاں'],e:'دایاں اشارہ دیں اور سڑک کی لین 1 میں نکلیں۔'},
+{q:'آپ لین 2 میں ہیں اور اپنے اخراج کے قریب ہیں۔ کیا کریں گے؟',o:['لین 1 کو کاٹنے سے پہلے دیکھیں کہ وہ خالی ہے','فوراً نکل جائیں، اخراج کو ترجیح ہے','دوسری گاڑیوں سے آگے نکلنے کے لیے رفتار بڑھائیں'],e:'لین 1 کی ٹریفک کو ترجیح ہے، نکلنے سے پہلے اسے دیکھ لیں۔'},
+{q:'کیا دوار کے اندر لین بدلنا جائز ہے؟',o:['ہاں، اگر کوئی قریب نہ ہو','نہیں، اخراج تک اپنی لین میں رہیں','ہاں، اخراج کی تیاری کے لیے'],e:'اپنی لین میں رہیں اور اخراج تک اسے نہ بدلیں۔'}]}
+};
+
+var S={lang:'ar',entry:0,exit:1,mode:0,paused:false,slow:false};
+var QZ={i:0,score:0,sel:-1,done:false};
+var $=function(id){return document.getElementById(id);};
+var NS='http://www.w3.org/2000/svg';
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function T(){return I18N[S.lang];}
+function num(n){return DIG[S.lang][n];}
+function show(el,on){el.style.display=on?'':'none';}
+function fmt(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o[k];});}
+function ptP(r,t){return [CX+r*Math.cos(t*D),CY-r*Math.sin(t*D)];}
+function rotPt(x,y,a){var r=a*D,c=Math.cos(r),s=Math.sin(r),dx=x-CX,dy=y-CY;return [CX+dx*c-dy*s,CY+dx*s+dy*c];}
+function mkCum(P){var c=[0];for(var j=1;j<P.length;j++){c.push(c[j-1]+Math.hypot(P[j][0]-P[j-1][0],P[j][1]-P[j-1][1]));}return c;}
+function posAt(P,C,l){
+l=Math.max(0,Math.min(C[C.length-1],l));
+for(var i=1;i<C.length;i++){
+if(l<=C[i]){var f=(l-C[i-1])/((C[i]-C[i-1])||1);return [P[i-1][0]+(P[i][0]-P[i-1][0])*f,P[i-1][1]+(P[i][1]-P[i-1][1])*f];}
+}
+return P[P.length-1];
+}
+function mk(tag,at){var el=document.createElementNS(NS,tag);for(var k in at)el.setAttribute(k,at[k]);return el;}
+
+var pts,cum,LE,LR,total,midPt,conf,lConf,lFreeze,tF,pcPts,pcCum,pcTotal;
+var car=$('car'),carb=$('carb'),sigL=$('sigL'),sigR=$('sigR'),pc=$('pc'),trail=$('trail'),mark=$('mark'),markc=$('markc'),signG=$('signG');
+var cap=$('cap'),phEl=$('ph'),txEl=$('tx'),lampL=$('lampL'),lampR=$('lampR'),flowLis=$('flow').children;
+var tv=0,last=0,fin=false,lastCap='',raf=0;
+
+function placeLabels(){
+var g=$('labs'),a=ENT_A[S.entry];
+g.textContent='';
+var ex=[[340,244],[246,44],[40,136],[136,336]];
+ex.forEach(function(b,i){
+var p=rotPt(b[0],b[1],a);
+g.appendChild(mk('circle',{cx:p[0].toFixed(1),cy:p[1].toFixed(1),r:11,'class':'tag'}));
+var t=mk('text',{x:p[0].toFixed(1),y:p[1].toFixed(1),'class':'tagt'});t.textContent=num(i+1);g.appendChild(t);
+});
+var ln=[[214,346,1],[198,346,2],[326,214,1],[214,54,1],[54,166,1],[166,326,1]];
+ln.forEach(function(b){
+var p=rotPt(b[0],b[1],a);
+g.appendChild(mk('circle',{cx:p[0].toFixed(1),cy:p[1].toFixed(1),r:7,'class':b[2]===1?'l1f':'l2f'}));
+var t=mk('text',{x:p[0].toFixed(1),y:p[1].toFixed(1),'class':'lt'});t.textContent=num(b[2]);g.appendChild(t);
+});
+$('rot').setAttribute('transform','rotate('+ENT_A[S.entry]+' 190 190)');
+$('stopTxt').setAttribute('transform','rotate('+(-ENT_A[S.entry])+')');
+}
+
+function build(){
+var e=EX[S.exit],lane=e.lane,rA=R[lane],rB=R[lane==1?2:1],off=OFF[lane],wrong=S.mode===1;
+var th0=360-Math.acos(off/rA)/D;
+pts=[[CX+off,385],ptP(rA,th0)];
+var n=Math.max(8,Math.ceil((e.th-th0)/3));
+for(var i=1;i<=n;i++){
+var t=i/n,r=rA;
+if(wrong){var s=Math.min(1,t/0.5);r=rA+(rB-rA)*s*s*(3-2*s);}
+pts.push(ptP(r,th0+(e.th-th0)*t));
+}
+midPt=pts[1+Math.floor(n*0.45)];
+pts.push(e.wp,e.end);
+cum=mkCum(pts);
+LE=cum[1];LR=cum[n+1];total=cum[cum.length-1];
+var yC=CY+Math.sqrt(79*79-off*off);
+conf=[CX+off,yC];lConf=385-yC;lFreeze=lConf-4;tF=lFreeze/SPD;
+var distConf=(S.mode===2)?SPD*tF+8:SPD*TP;
+var thC=360-Math.acos(off/79)/D;
+var thS=thC-distConf/79/D;
+var th1=EX[1].th,m=Math.ceil((th1-thS)/3);
+pcPts=[];
+for(var k=0;k<=m;k++){pcPts.push(ptP(79,thS+(th1-thS)*k/m));}
+pcPts.push(EX[1].wp,EX[1].end);
+pcCum=mkCum(pcPts);pcTotal=pcCum[pcCum.length-1];
+trail.setAttribute('d','M'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1);}).join('L'));
+var c=wrong?'var(--bad)':(lane==1?'var(--l1)':'var(--l2)');
+trail.style.stroke=S.mode===2?'var(--bad)':c;
+carb.style.fill=S.mode===2?'var(--bad)':c;
+var mp=S.mode===2?conf:midPt;
+markc.setAttribute('transform','translate('+mp[0].toFixed(1)+','+mp[1].toFixed(1)+')');
+show(mark,false);
+}
+function ourL(t){
+if(S.mode===2)return Math.min(SPD*t,lFreeze);
+if(t<T1){var u=t/T1;return STOPL*(1-(1-u)*(1-u));}
+var dt=t-T1-HOLD;
+if(dt<0)return STOPL;
+return STOPL+(dt<0.4?106.25*dt*dt:SPD*(dt-0.2));
+}
+function pcL(t){return SPD*(S.mode===2?Math.min(t,tF):t);}
+
+function capText(key){
+var c=T().cap,lane=EX[S.exit].lane,o={L:num(lane),E:num(S.exit),S:lane==1?T().sideR:T().sideL};
+var a=c[key],txt=fmt(a[1],o);
+if((key==='signal'||key==='exit')&&lane===2&&a[2])txt+=' '+a[2];
+return [fmt(a[0],o),txt];
+}
+function setCap(kind,key){
+var id=S.lang+'|'+S.exit+'|'+S.mode+'|'+key;
+if(id===lastCap)return;
+lastCap=id;
+var c=capText(key);
+phEl.textContent=c[0];txEl.textContent=c[1];cap.setAttribute('data-k',kind);
+}
+
+function render(t){
+var l=ourL(t),mode=S.mode;
+fin=(mode===2)?(t>=tF+0.5):(l>=total-0.01);
+var p=posAt(pts,cum,l),a=posAt(pts,cum,l-4),b=posAt(pts,cum,l+4);
+var ang=Math.atan2(b[1]-a[1],b[0]-a[0])/D;
+car.setAttribute('transform','translate('+p[0].toFixed(1)+','+p[1].toFixed(1)+') rotate('+ang.toFixed(1)+')');
+var pl=pcL(t);
+if(pl<=pcTotal){
+var q=posAt(pcPts,pcCum,pl),qa=posAt(pcPts,pcCum,pl-4),qb=posAt(pcPts,pcCum,pl+4);
+var qang=Math.atan2(qb[1]-qa[1],qb[0]-qa[0])/D;
+pc.setAttribute('transform','translate('+q[0].toFixed(1)+','+q[1].toFixed(1)+') rotate('+qang.toFixed(1)+')');
+pc.setAttribute('opacity',String(Math.min(1,t/0.5)));
+}else{pc.setAttribute('opacity','0');}
+var bl=Math.floor(t*3.5)%2===0;
+var leftOn,rightOn;
+if(mode===2){leftOn=l>40&&!fin;rightOn=false;}
+else{leftOn=t>=TP&&l<LE+30;rightOn=l>LR-45&&l<LR+55;}
+show(sigL,leftOn&&bl);show(sigR,rightOn&&bl);
+lampL.classList.toggle('on',leftOn&&bl);lampR.classList.toggle('on',rightOn&&bl);
+var key,kind='a',idx=0,bad=-1;
+if(mode===2){
+if(fin){key='collide';kind='r';idx=1;bad=1;}
+else if(l<lConf-45){key='approach';idx=0;}
+else{key='enterBad';kind='r';idx=2;}
+}else{
+if(fin){key=(mode===1)?'doneBad':'done';kind='g';idx=5;}
+else if(t<T1-0.5){key='approach';idx=0;}
+else if(t<TP){key='stop';idx=1;}
+else if(l<LE+30){key='enter';idx=2;}
+else if(l<LR-45){key=(mode===1)?'ringBad':'ring';kind=(mode===1)?'r':'a';idx=3;if(mode===1)bad=3;}
+else if(l<LR+10){key=(mode===1)?'ringBad':'signal';kind=(mode===1)?'r':'a';idx=4;if(mode===1)bad=3;}
+else{key=(mode===1)?'ringBad':'exit';kind=(mode===1)?'r':'a';idx=4;if(mode===1)bad=3;}
+}
+setCap(kind,key);
+for(var i=0;i<5;i++){
+var st=i<idx?'done':(i===idx?'cur':'todo');
+if(i===bad)st='bad';
+if(flowLis[i].getAttribute('data-s')!==st)flowLis[i].setAttribute('data-s',st);
+}
+if(mode===1&&idx>=3)flowLis[3].setAttribute('data-s','bad');
+show(mark,(mode===1&&l>LE+(LR-LE)*0.3)||(mode===2&&fin));
+signG.setAttribute('opacity',(key==='stop'||key==='collide')?'1':'0.55');
+}
+
+function tick(now){
+if(ROOT.hidden){last=now;raf=requestAnimationFrame(tick);return;}
+if(!last)last=now;
+var dt=Math.min(0.05,(now-last)/1000);last=now;
+if(!S.paused&&!fin)tv+=dt*(S.slow?0.5:1);
+render(tv);
+raf=requestAnimationFrame(tick);
+}
+function restart(){
+tv=0;fin=false;lastCap='';S.paused=false;
+$('bPause').textContent=T().ctl.pause;
+build();
+if(reduce){tv=100;render(tv);}
+else render(0);
+}
+
+function renderQuiz(){
+var t=T(),U=t.qUI,Q=t.q,n=Q.length;
+$('qbar').style.width=(100*(QZ.done?n:QZ.i+(QZ.sel>=0?1:0))/n)+'%';
+show($('qbody'),!QZ.done);show($('qres'),QZ.done);
+$('qretry').textContent=U.retry;
+if(QZ.done){$('qscore').textContent=fmt(U.score,{s:num(QZ.score),n:num(n)});return;}
+var q=Q[QZ.i];
+$('qcount').textContent=fmt(U.count,{i:num(QZ.i+1),n:num(n)});
+$('qtext').textContent=q.q;
+var box=$('qopts');box.textContent='';
+q.o.forEach(function(txt,k){
+var b=document.createElement('button');b.className='opt';b.textContent=txt;b.setAttribute('data-k',k);
+if(QZ.sel>=0){
+if(k===COR[QZ.i])b.setAttribute('data-s','ok');
+else if(k===QZ.sel)b.setAttribute('data-s','no');
+else b.setAttribute('data-s','lock');
+}
+box.appendChild(b);
+});
+var answered=QZ.sel>=0;
+show($('qfb'),answered);show($('qnext'),answered);
+if(answered){
+$('qfbh').textContent=QZ.sel===COR[QZ.i]?U.ok:U.no;
+$('qfbt').textContent=q.e;
+$('qnext').textContent=QZ.i<n-1?U.next:U.result;
+}
+}
+
+function applyLang(){
+var t=T(),app=$('mod-rb');
+Array.prototype.forEach.call(app.querySelectorAll('[data-i]'),function(el){el.textContent=t[el.getAttribute('data-i')];});
+Array.prototype.forEach.call($('entries').children,function(b){b.textContent=t.entries[+b.dataset.n];});
+Array.prototype.forEach.call($('exits').children,function(b){b.textContent=fmt(t.exitBtn,{E:num(+b.dataset.e),L:num(+b.dataset.lane)});});
+Array.prototype.forEach.call($('modes').children,function(b){b.textContent=t.modes[+b.dataset.m];});
+Array.prototype.forEach.call(flowLis,function(li,i){li.children[0].textContent=num(i+1);li.children[1].textContent=t.steps[i];});
+var rl=$('rules');rl.textContent='';
+t.rules.forEach(function(s,i){var li=document.createElement('li'),n=document.createElement('span'),x=document.createElement('span');n.className='n';n.textContent=num(i+1);x.textContent=s;li.appendChild(n);li.appendChild(x);rl.appendChild(li);});
+var er=$('errs');er.textContent='';
+t.errs.forEach(function(s){var li=document.createElement('li');li.textContent=s;er.appendChild(li);});
+$('stopTxt').textContent=t.stop;
+$('bReplay').textContent=t.ctl.replay;
+$('bPause').textContent=S.paused?t.ctl.play:t.ctl.pause;
+$('bSlow').textContent=t.ctl.slow;
+$('scene').setAttribute('aria-label',t.title);
+placeLabels();
+renderQuiz();
+lastCap='';
+}
+function paint(){
+Array.prototype.forEach.call($('entries').children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.n===S.entry));});
+Array.prototype.forEach.call($('exits').children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.e===S.exit));});
+Array.prototype.forEach.call($('modes').children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.m===S.mode));});
+}
+
+$('entries').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;S.entry=+b.dataset.n;paint();placeLabels();restart();});
+$('exits').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;S.exit=+b.dataset.e;paint();restart();});
+$('modes').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;S.mode=+b.dataset.m;paint();restart();});
+$('scene').addEventListener('click',restart);
+$('bReplay').addEventListener('click',restart);
+$('bPause').addEventListener('click',function(){S.paused=!S.paused;this.textContent=S.paused?T().ctl.play:T().ctl.pause;});
+$('bSlow').addEventListener('click',function(){S.slow=!S.slow;this.setAttribute('aria-pressed',String(S.slow));});
+$('qopts').addEventListener('click',function(ev){
+var b=ev.target.closest('button');if(!b||QZ.sel>=0)return;
+QZ.sel=+b.getAttribute('data-k');
+if(QZ.sel===COR[QZ.i])QZ.score++;
+renderQuiz();
+});
+$('qnext').addEventListener('click',function(){
+if(QZ.i<T().q.length-1){QZ.i++;QZ.sel=-1;}else{QZ.done=true;}
+renderQuiz();
+});
+$('qretry').addEventListener('click',function(){QZ.i=0;QZ.score=0;QZ.sel=-1;QZ.done=false;renderQuiz();});
+
+var ROOT=$('mod-rb');
+window.RB={I18N:I18N,
+setLang:function(l){S.lang=l;applyLang();render(tv);},
+activate:function(){restart();},
+start:function(l){S.lang=l;applyLang();paint();build();if(reduce){tv=100;render(tv);}else{render(0);raf=requestAnimationFrame(tick);}}};
+})();
+</script>
+<script>
+(function(){
+/* ---------- Geometry (1 m = 10 units) ---------- */
+var D=Math.PI/180;
+var BW=25,YE=145,YB=200,XB=150;          // bay width, bay entrance, bay back line, target bay centre
+var RR=45.5,WB=27,HW=9,ROH=9.5,FOH=36.5,MIR=17; // turning radius at rear axle, wheelbase, half width, overhangs, mirror position
+var DMAX=Math.atan(WB/RR)/D;
+var Y_OK=YE-25,Y_FAR=YE-45,Y_CLOSE=YE-14;            // lane position: near the dashed line / too close to the bays
+var X0=XB+RR,XSTART=-60;
+var STOPY=YB-2-ROH;                       // rear bumper 0.2 m before the back line
+var LINES=[XB+12.5,XB+37.5,XB+62.5];
+var BOT=[-5,-4,-2,-1,1,2,4,6],TOP=[-5,-3,-2,0,1,3,4,5,7];
+var PCOL=['#9BA6A0','#C3CAC5','#7C8882','#B0BAB4','#8E9A94','#A7B2AC'];
+var OBS=[];
+BOT.forEach(function(k){var c=XB+k*BW;OBS.push({x0:c-9,x1:c+9,y0:YE+4,y1:YE+50});});
+TOP.forEach(function(k){var c=XB+k*BW;OBS.push({x0:c-9,x1:c+9,y0:25,y1:71});});
+OBS.push({x0:-200,x1:560,y0:203.5,y1:400});
+var DT=1/120;
+
+var DIGS={ar:'٠١٢٣٤٥٦٧٨٩',ur:'۰۱۲۳۴۵۶۷۸۹'};
+var COR=[1,1,0,2,1,0];
+
+var I18N={
+ar:{dir:'rtl',
+eyebrow:'تدريب القيادة',title:'الوقوف الخلفي بزاوية ٩٠°',
+sub:'تدريب عملي على الرجوع إلى موقف عمودي بزاوية ٩٠ درجة، خطوة بخطوة من مقعد السائق.',by:'إعداد المدرب: عبدالوهاب الذبياني',
+labDir:'مسار القدوم',dirs:['مسار الذهاب','مسار العودة'],lanes:['ذهاب','عودة'],labSide:'جهة الموقف',sides:['على اليمين','على اليسار'],labMode:'اختر الحالة',hint:'المشهد من منظور السائق: الموقف المطلوب على يمينك.',
+modes:['الطريقة الصحيحة','خطأ: الاقتراب من السيارات','خطأ: عدم تعديل المقود','خطأ: عدم التوقف'],
+steps:['حدّد الموقف والزم اليسار','عُدّ ثلاثة خطوط','دوّر المقود يمينًا','عدّل المقود وارجع مستقيمًا','توقف تام'],
+dGear:'ناقل الحركة',dSteer:'المقود',dLines:'الخطوط بعد الموقف',
+steer:{c:'في المنتصف',r:'يمين إلى آخره',t:'يدور'},
+ctl:{replay:'إعادة',pause:'إيقاف مؤقت',play:'تشغيل',slow:'بطيء',step:'خطوة بخطوة',next:'الخطوة التالية'},
+lg1:'سيارة المتدرب',lg2:'سيارات متوقفة',lg3:'الموقف المطلوب',lg4:'خط مرجعي',
+rulesT:'خطوات المناورة',
+rules:['حدّد الموقف المطلوب، ثم اتجه بالسيارة نحو اليسار بالقرب من الخط الأبيض المتقطع.','عُدّ ثلاثة خطوط بيضاء بعد الموقف المطلوب.','عندما يحاذي الخط الثالث مرآتك الجانبية اليمنى: توقف، وضع ناقل الحركة على الرجوع، ودوّر المقود يمينًا إلى آخره.','راقب المرايا الجانبية. عندما تستقيم السيارة أعِد المقود إلى المنتصف واستمر في الرجوع مستقيمًا.','راقب الخط الأبيض في المرايا، وعندما يختفي توقف توقفًا تامًا.'],
+chip1:'يسار: قرب الخط المتقطع',chip2:'الخط الثالث = المرآة اليمنى',chip3:'اختفاء الخط = توقف',
+errsT:'أخطاء شائعة',
+errs:['الاقتراب من السيارات المتوقفة بدل الالتزام باليسار.','الخطأ في عدّ الخطوط، أو تدوير المقود قبل وصول الخط الثالث إلى المرآة.','عدم تدوير المقود إلى آخره.','نسيان إعادة المقود إلى المنتصف عندما تستقيم السيارة.','عدم التوقف عند اختفاء الخط من المرآة.','الرجوع بسرعة بدل الرجوع ببطء.'],
+cap:{
+keep:['قبل الموقف','حدّد الموقف المطلوب، ثم اتجه بالسيارة نحو اليسار بالقرب من الخط الأبيض المتقطع.'],
+keepBad:['خطأ','أنت قريب من السيارات المتوقفة. الزم اليسار بالقرب من الخط الأبيض المتقطع.'],
+count:['عُدّ الخطوط','عُدّ الخطوط البيضاء بعد موقفك: {N} من {T}.'],
+align:['الخط الثالث عند المرآة','أصبح الخط الثالث بمحاذاة المرآة الجانبية اليمنى. توقف، وضع ناقل الحركة على الرجوع، ودوّر المقود يمينًا إلى آخره.'],
+arc:['الرجوع والمقود يمينًا','ارجع ببطء وراقب المرآتين الجانبيتين.'],
+center:['استقامت السيارة','أعِد المقود إلى المنتصف.'],
+straight:['الرجوع مستقيمًا','استمر في الرجوع بخط مستقيم، وراقب الخط الأبيض في المرايا.'],
+stop:['توقف','اختفى الخط الأبيض من المرآة. توقف توقفًا تامًا.'],
+done:['أحسنت','وقفت باستقامة في منتصف الموقف.'],
+noCenter:['خطأ','استقامت السيارة لكن المقود ما زال إلى اليمين، فاستمرت مؤخرة السيارة في الانحراف.'],
+noStop:['خطأ','اختفى الخط الأبيض من المرآة وما زلت ترجع.'],
+hitSide:['اصطدام','اصطدمت زاوية السيارة الخلفية بالسيارة في الموقف المجاور. البدء قرب الخط المتقطع يمنح الدوران المساحة الكافية.'],
+hitTurn:['اصطدام','انحرفت السيارة نحو الموقف المجاور. أعِد المقود إلى المنتصف بمجرد أن تستقيم السيارة.'],
+hitCurb:['اصطدام','اصطدمت بالرصيف خلفك. توقف بمجرد اختفاء الخط من المرآة.']},
+quizT:'اختبر نفسك',quizSub:'ستة أسئلة قصيرة لقياس فهمك.',
+qUI:{count:'سؤال {i} من {n}',next:'التالي',result:'عرض النتيجة',ok:'إجابة صحيحة',no:'إجابة خاطئة',score:'نتيجتك {s} من {n}',retry:'إعادة الاختبار'},
+q:[
+{q:'أين تضع السيارة في الممر قبل البدء؟',o:['قريبًا من السيارات المتوقفة على اليمين','نحو اليسار بالقرب من الخط الأبيض المتقطع','في منتصف الممر تمامًا دون مرجع'],e:'اتجه نحو اليسار بالقرب من الخط المتقطع، فهذا يمنح السيارة مساحة الدوران.'},
+{q:'كم خطًا أبيض تعدّ بعد الموقف المطلوب؟',o:['خطين','ثلاثة خطوط','أربعة خطوط'],e:'تعدّ ثلاثة خطوط بعد الموقف المطلوب.'},
+{q:'ماذا يجب أن يحاذي الخط الثالث؟',o:['المرآة الجانبية اليمنى','الصدام الأمامي','العجلة الخلفية'],e:'عندما يحاذي الخط الثالث المرآة اليمنى تبدأ المناورة.'},
+{q:'عند محاذاة الخط الثالث للمرآة، ماذا تفعل بالمقود؟',o:['تدوّره يسارًا إلى آخره','تبقيه في المنتصف','تدوّره يمينًا إلى آخره'],e:'توقف، ثم دوّر المقود يمينًا إلى آخره وارجع ببطء.'},
+{q:'عندما تستقيم السيارة داخل الموقف، ماذا تفعل؟',o:['تبقي المقود إلى اليمين','تعيد المقود إلى المنتصف وترجع مستقيمًا','تتقدم للأمام وتبدأ من جديد'],e:'أعِد المقود إلى المنتصف واستمر في الرجوع بخط مستقيم.'},
+{q:'متى تتوقف توقفًا تامًا؟',o:['عندما يختفي الخط الأبيض من المرآة','عندما تسمع صوت حساس الركن','عندما تتجاوز مقدمة السيارة الخط المتقطع'],e:'راقب الخط الأبيض في المرايا، وتوقف عندما يختفي.'}]},
+
+en:{dir:'ltr',
+eyebrow:'Driver training',title:'Reverse parking at 90°',
+sub:'Practical training on backing into a 90-degree parking space, step by step from the driver’s seat.',by:'Prepared by trainer Abdulwahab Al-Dhubayani',
+labDir:'Approach lane',dirs:['Inbound lane','Return lane'],lanes:['Inbound','Return'],labSide:'Bay side',sides:['On the right','On the left'],labMode:'Choose the scenario',hint:'Driver’s view: your bay is on the right.',
+modes:['Correct method','Mistake: too close to the bays','Mistake: wheel not centered','Mistake: no stop'],
+steps:['Pick the bay, keep left','Count three lines','Full right lock','Center and reverse straight','Full stop'],
+dGear:'Gear',dSteer:'Steering wheel',dLines:'Lines past the bay',
+steer:{c:'Centered',r:'Full right',t:'Turning'},
+ctl:{replay:'Replay',pause:'Pause',play:'Play',slow:'Slow',step:'Step by step',next:'Next step'},
+lg1:'Your car',lg2:'Parked cars',lg3:'Your bay',lg4:'Reference line',
+rulesT:'The maneuver',
+rules:['Spot the bay you want, then drive toward the left, near the dashed white line.','Count three white lines past your bay.','When the third line is level with your right mirror: stop, select reverse and turn the wheel all the way to the right.','Watch your side mirrors. As the car straightens, center the wheel and keep reversing in a straight line.','Watch the white line in your mirrors. Once it disappears, stop completely.'],
+chip1:'Left: near the dashed line',chip2:'Third line = right mirror',chip3:'Line gone = stop',
+errsT:'Common mistakes',
+errs:['Driving close to the parked cars instead of keeping left.','Miscounting the lines, or turning before the third line reaches the mirror.','Not turning the wheel all the way.','Forgetting to center the wheel once the car is straight.','Not stopping when the line disappears from the mirror.','Reversing fast instead of slowly.'],
+cap:{
+keep:['Before the bay','Spot your bay, then drive toward the left, near the dashed white line.'],
+keepBad:['Mistake','You are driving close to the parked cars. Keep left, near the dashed white line.'],
+count:['Count the lines','Count the white lines past your bay: {N} of {T}.'],
+align:['Third line at the mirror','The third line is level with your right mirror. Stop, select reverse and turn the wheel all the way to the right.'],
+arc:['Reversing on full lock','Reverse slowly and watch both side mirrors.'],
+center:['The car is straight','Return the steering wheel to the center.'],
+straight:['Reverse straight','Keep reversing in a straight line and watch the white line in your mirrors.'],
+stop:['Stop','The white line has disappeared from your mirror. Stop completely.'],
+done:['Well done','You are parked straight and centered in your bay.'],
+noCenter:['Mistake','The car is straight, but the wheel is still turned right, so the rear keeps swinging.'],
+noStop:['Mistake','The white line has disappeared, but you are still reversing.'],
+hitSide:['Collision','Your rear corner hit the car in the next bay. Starting near the dashed line gives the turn the room it needs.'],
+hitTurn:['Collision','The car swung toward the next bay. Center the wheel as soon as the car is straight.'],
+hitCurb:['Collision','You reversed into the curb. Stop as soon as the line disappears from your mirror.']},
+quizT:'Test yourself',quizSub:'Six short questions to check your understanding.',
+qUI:{count:'Question {i} of {n}',next:'Next',result:'See result',ok:'Correct',no:'Not quite',score:'Your score: {s} of {n}',retry:'Retry quiz'},
+q:[
+{q:'Where do you position the car before you start?',o:['Close to the parked cars on the right','Toward the left, near the dashed white line','Exactly in the middle, with no reference'],e:'Keep left near the dashed line. It gives the car room to turn.'},
+{q:'How many white lines do you count past your bay?',o:['Two','Three','Four'],e:'Count three lines past the bay.'},
+{q:'What should the third line line up with?',o:['Your right side mirror','Your front bumper','Your rear wheel'],e:'Start the turn when the third line is level with your right mirror.'},
+{q:'At that moment, what do you do with the wheel?',o:['Turn it all the way left','Keep it centered','Turn it all the way right'],e:'Stop, then turn the wheel all the way right and reverse slowly.'},
+{q:'What do you do once the car is straight in the bay?',o:['Keep the wheel turned right','Center the wheel and reverse straight','Drive forward and start again'],e:'Center the wheel and keep reversing in a straight line.'},
+{q:'When do you stop completely?',o:['When the white line disappears from the mirror','When the parking sensor beeps','When the front of the car passes the dashed line'],e:'Watch the white line in your mirrors and stop once it disappears.'}]},
+
+am:{dir:'ltr',
+eyebrow:'የመንዳት ስልጠና',title:'በ90° ወደ ኋላ ማቆም',
+sub:'በ90 ዲግሪ የመኪና ማቆሚያ ቦታ ውስጥ ወደ ኋላ ገብቶ ማቆምን ከሹፌሩ ወንበር ደረጃ በደረጃ የሚያስተምር ተግባራዊ ስልጠና።',by:'አዘጋጅ አሰልጣኝ፡ Abdulwahab Al-Dhubayani',
+labDir:'የመምጫ መስመር',dirs:['የመሄጃ መስመር','የመመለሻ መስመር'],lanes:['መሄጃ','መመለሻ'],labSide:'የቦታው አቅጣጫ',sides:['በቀኝ','በግራ'],labMode:'ሁኔታውን ይምረጡ',hint:'የሹፌሩ እይታ፡ የማቆሚያ ቦታው በቀኝዎ ነው።',
+modes:['ትክክለኛ አሠራር','ስህተት፡ ወደ መኪኖቹ መጠጋት','ስህተት፡ መሪውን አለማስተካከል','ስህተት፡ አለማቆም'],
+steps:['ቦታውን ይምረጡ፣ ወደ ግራ ይጠጉ','ሦስት መስመሮችን ይቁጠሩ','መሪውን ሙሉ ወደ ቀኝ','መሪውን አስተካክለው ቀጥ ብለው','ሙሉ በሙሉ ማቆም'],
+dGear:'ማርሽ',dSteer:'መሪ',dLines:'ከቦታው በኋላ ያሉ መስመሮች',
+steer:{c:'መሃል',r:'ሙሉ ወደ ቀኝ',t:'እየዞረ'},
+ctl:{replay:'እንደገና',pause:'አቁም',play:'ቀጥል',slow:'ቀስ ብሎ',step:'ደረጃ በደረጃ',next:'ቀጣይ ደረጃ'},
+lg1:'የእርስዎ መኪና',lg2:'የቆሙ መኪኖች',lg3:'የእርስዎ ቦታ',lg4:'ማመሳከሪያ መስመር',
+rulesT:'የአሠራሩ ደረጃዎች',
+rules:['የሚፈልጉትን ቦታ ይለዩ፣ ከዚያ መኪናውን ወደ ግራ፣ ከተቆራረጠው ነጭ መስመር አጠገብ ይንዱ።','ከቦታዎ በኋላ ሦስት ነጭ መስመሮችን ይቁጠሩ።','ሦስተኛው መስመር ከቀኝ የጎን መስታወት ጋር ሲስተካከል፡ ያቁሙ፣ የኋላ ማርሽ ያስገቡ፣ መሪውን እስከ መጨረሻ ወደ ቀኝ ያዙሩ።','የጎን መስታወቶችን ይከታተሉ። መኪናው ቀጥ ሲል መሪውን ወደ መሃል መልሰው ቀጥ ብለው ወደ ኋላ ይቀጥሉ።','ነጩን መስመር በመስታወቶቹ ይከታተሉ፤ ሲጠፋ ሙሉ በሙሉ ያቁሙ።'],
+chip1:'ግራ፡ ከተቆራረጠው መስመር አጠገብ',chip2:'ሦስተኛ መስመር = ቀኝ መስታወት',chip3:'መስመሩ ሲጠፋ = ያቁሙ',
+errsT:'የተለመዱ ስህተቶች',
+errs:['ወደ ግራ ከመቆየት ይልቅ ለቆሙ መኪኖች መቅረብ።','መስመሮችን በስህተት መቁጠር ወይም ሦስተኛው መስመር መስታወቱ ላይ ከመድረሱ በፊት ማዞር።','መሪውን እስከ መጨረሻ አለማዞር።','መኪናው ቀጥ ሲል መሪውን ወደ መሃል መመለስ መርሳት።','መስመሩ ከመስታወቱ ሲጠፋ አለማቆም።','ቀስ ብሎ ከመንዳት ይልቅ በፍጥነት ወደ ኋላ መንዳት።'],
+cap:{
+keep:['ከማቆሚያው በፊት','የሚፈልጉትን ቦታ ይለዩ፣ ከዚያ መኪናውን ወደ ግራ፣ ከተቆራረጠው ነጭ መስመር አጠገብ ይንዱ።'],
+keepBad:['ስህተት','ለቆሙት መኪኖች በጣም ቀርበዋል። ወደ ግራ፣ ከተቆራረጠው ነጭ መስመር አጠገብ ይቆዩ።'],
+count:['መስመሮችን ይቁጠሩ','ከቦታዎ በኋላ ያሉትን ነጭ መስመሮች ይቁጠሩ፡ {N} ከ {T}።'],
+align:['ሦስተኛው መስመር በመስታወቱ','ሦስተኛው መስመር ከቀኝ የጎን መስታወትዎ ጋር ተስተካክሏል። ያቁሙ፣ የኋላ ማርሽ ያስገቡ እና መሪውን እስከ መጨረሻ ወደ ቀኝ ያዙሩ።'],
+arc:['ሙሉ ዙር ወደ ኋላ','ቀስ ብለው ወደ ኋላ ይንዱ እና ሁለቱንም የጎን መስታወቶች ይከታተሉ።'],
+center:['መኪናው ቀጥ ሆኗል','መሪውን ወደ መሃል ይመልሱ።'],
+straight:['ቀጥ ብለው ወደ ኋላ','ቀጥ ባለ መስመር ወደ ኋላ መንዳት ይቀጥሉ፤ ነጩን መስመር በመስታወቶቹ ይከታተሉ።'],
+stop:['ያቁሙ','ነጩ መስመር ከመስታወቱ ጠፍቷል። ሙሉ በሙሉ ያቁሙ።'],
+done:['በጣም ጥሩ','መኪናዎ በቦታው መሃል ቀጥ ብሎ ቆሟል።'],
+noCenter:['ስህተት','መኪናው ቀጥ ቢሆንም መሪው አሁንም ወደ ቀኝ ነው፤ ስለዚህ የኋላው ክፍል መዞሩን ቀጥሏል።'],
+noStop:['ስህተት','ነጩ መስመር ጠፍቷል፣ ግን አሁንም ወደ ኋላ እየነዱ ነው።'],
+hitSide:['ግጭት','የመኪናዎ የኋላ ጥግ በአጠገቡ ቦታ ያለውን መኪና መታ። ከተቆራረጠው መስመር አጠገብ መጀመር ለመዞሪያው በቂ ቦታ ይሰጣል።'],
+hitTurn:['ግጭት','መኪናው ወደ አጠገቡ ቦታ ዞረ። መኪናው ቀጥ እንዳለ መሪውን ወደ መሃል ይመልሱ።'],
+hitCurb:['ግጭት','ከኋላ ያለውን የእግረኛ መንገድ ጠርዝ መቱ። መስመሩ ከመስታወቱ እንደጠፋ ያቁሙ።']},
+quizT:'ራስዎን ይፈትሹ',quizSub:'ግንዛቤዎን የሚፈትሹ ስድስት አጫጭር ጥያቄዎች።',
+qUI:{count:'ጥያቄ {i} ከ {n}',next:'ቀጣይ',result:'ውጤት ይመልከቱ',ok:'ትክክል',no:'ስህተት',score:'ውጤትዎ፦ {s} ከ {n}',retry:'ፈተናውን ድገም'},
+q:[
+{q:'ከመጀመርዎ በፊት መኪናውን በመተላለፊያው የት ያደርጋሉ?',o:['በቀኝ በኩል ለቆሙት መኪኖች ቅርብ','ወደ ግራ፣ ከተቆራረጠው ነጭ መስመር አጠገብ','ያለ ማመሳከሪያ በትክክል መሃል ላይ'],e:'ወደ ግራ ከተቆራረጠው መስመር አጠገብ ይሁኑ፤ ይህ ለመዞሪያው ቦታ ይሰጣል።'},
+{q:'ከሚፈልጉት ቦታ በኋላ ስንት ነጭ መስመሮችን ይቆጥራሉ?',o:['ሁለት','ሦስት','አራት'],e:'ከቦታው በኋላ ሦስት መስመሮችን ይቁጠሩ።'},
+{q:'ሦስተኛው መስመር ከምን ጋር መስተካከል አለበት?',o:['ከቀኝ የጎን መስታወት','ከፊት መከላከያ','ከኋላ ጎማ'],e:'ሦስተኛው መስመር ከቀኝ መስታወት ጋር ሲስተካከል መዞር ይጀምሩ።'},
+{q:'በዚያ ጊዜ መሪውን ምን ያደርጋሉ?',o:['እስከ መጨረሻ ወደ ግራ ያዙሩታል','መሃል ላይ ያቆዩታል','እስከ መጨረሻ ወደ ቀኝ ያዙሩታል'],e:'ያቁሙ፣ መሪውን እስከ መጨረሻ ወደ ቀኝ አዙረው ቀስ ብለው ወደ ኋላ ይንዱ።'},
+{q:'መኪናው በቦታው ውስጥ ቀጥ ሲል ምን ያደርጋሉ?',o:['መሪውን ወደ ቀኝ እንዳለ ያቆዩታል','መሪውን ወደ መሃል መልሰው ቀጥ ብለው ወደ ኋላ ይሄዳሉ','ወደ ፊት ወጥተው እንደገና ይጀምራሉ'],e:'መሪውን ወደ መሃል መልሰው ቀጥ ባለ መስመር ወደ ኋላ ይቀጥሉ።'},
+{q:'ሙሉ በሙሉ የሚያቆሙት መቼ ነው?',o:['ነጩ መስመር ከመስታወቱ ሲጠፋ','የማቆሚያ ሴንሰር ድምፅ ሲሰሙ','የመኪናው ፊት የተቆራረጠውን መስመር ሲያልፍ'],e:'ነጩን መስመር በመስታወቶቹ ይከታተሉ፤ ሲጠፋ ያቁሙ።'}]},
+
+ur:{dir:'rtl',
+eyebrow:'ڈرائیونگ تربیت',title:'۹۰ ڈگری پر ریورس پارکنگ',
+sub:'۹۰ ڈگری کی پارکنگ میں ریورس کر کے گاڑی کھڑی کرنے کی عملی تربیت، ڈرائیور کی سیٹ سے قدم بہ قدم۔',by:'تیار کردہ: ٹرینر عبدالوہاب الذبیانی',
+labDir:'آمد کی لین',dirs:['جانے کی لین','واپسی کی لین'],lanes:['جانا','واپسی'],labSide:'جگہ کی سمت',sides:['دائیں طرف','بائیں طرف'],labMode:'صورتِ حال منتخب کریں',hint:'ڈرائیور کا منظر: پارکنگ کی جگہ آپ کے دائیں طرف ہے۔',
+modes:['درست طریقہ','غلطی: کھڑی گاڑیوں کے قریب','غلطی: اسٹیئرنگ سیدھا نہ کرنا','غلطی: نہ رکنا'],
+steps:['جگہ چنیں، بائیں رہیں','تین لکیریں گنیں','اسٹیئرنگ پورا دائیں','سیدھا کر کے ریورس','مکمل رکیں'],
+dGear:'گیئر',dSteer:'اسٹیئرنگ',dLines:'جگہ کے بعد لکیریں',
+steer:{c:'درمیان میں',r:'پورا دائیں',t:'گھوم رہا ہے'},
+ctl:{replay:'دوبارہ',pause:'روکیں',play:'چلائیں',slow:'آہستہ',step:'قدم بہ قدم',next:'اگلا قدم'},
+lg1:'آپ کی گاڑی',lg2:'کھڑی گاڑیاں',lg3:'آپ کی جگہ',lg4:'حوالہ لکیر',
+rulesT:'مرحلہ وار طریقہ',
+rules:['مطلوبہ جگہ پہچانیں، پھر گاڑی کو بائیں طرف سفید ٹوٹی ہوئی لکیر کے قریب رکھیں۔','اپنی جگہ کے بعد تین سفید لکیریں گنیں۔','جب تیسری لکیر دائیں سائیڈ مرر کے برابر آئے: رکیں، ریورس گیئر لگائیں اور اسٹیئرنگ پورا دائیں گھمائیں۔','سائیڈ مرر دیکھتے رہیں۔ گاڑی سیدھی ہوتے ہی اسٹیئرنگ درمیان میں لائیں اور سیدھا ریورس کرتے رہیں۔','آئینوں میں سفید لکیر پر نظر رکھیں؛ جیسے ہی وہ غائب ہو، مکمل رک جائیں۔'],
+chip1:'بائیں: ٹوٹی لکیر کے قریب',chip2:'تیسری لکیر = دایاں مرر',chip3:'لکیر غائب = رکیں',
+errsT:'عام غلطیاں',
+errs:['بائیں رہنے کے بجائے کھڑی گاڑیوں کے قریب چلنا۔','لکیریں غلط گننا، یا تیسری لکیر آئینے تک پہنچنے سے پہلے موڑنا۔','اسٹیئرنگ پورا نہ گھمانا۔','گاڑی سیدھی ہونے پر اسٹیئرنگ درمیان میں نہ لانا۔','لکیر آئینے سے غائب ہونے پر نہ رکنا۔','آہستہ کے بجائے تیز ریورس کرنا۔'],
+cap:{
+keep:['پارکنگ سے پہلے','مطلوبہ جگہ پہچانیں، پھر گاڑی کو بائیں طرف سفید ٹوٹی ہوئی لکیر کے قریب رکھیں۔'],
+keepBad:['غلطی','آپ کھڑی گاڑیوں کے بہت قریب ہیں۔ بائیں طرف سفید ٹوٹی ہوئی لکیر کے قریب رہیں۔'],
+count:['لکیریں گنیں','اپنی جگہ کے بعد سفید لکیریں گنیں: {N} از {T}۔'],
+align:['تیسری لکیر آئینے پر','تیسری لکیر دائیں سائیڈ مرر کے برابر آ گئی ہے۔ رکیں، ریورس گیئر لگائیں اور اسٹیئرنگ پورا دائیں گھمائیں۔'],
+arc:['پورے موڑ کے ساتھ ریورس','آہستہ ریورس کریں اور دونوں سائیڈ مرر دیکھتے رہیں۔'],
+center:['گاڑی سیدھی ہو گئی','اسٹیئرنگ کو درمیان میں واپس لائیں۔'],
+straight:['سیدھا ریورس','سیدھی لائن میں ریورس جاری رکھیں اور آئینوں میں سفید لکیر پر نظر رکھیں۔'],
+stop:['رکیں','سفید لکیر آئینے سے غائب ہو گئی ہے۔ مکمل طور پر رک جائیں۔'],
+done:['شاباش','آپ کی گاڑی جگہ کے بیچ میں سیدھی کھڑی ہے۔'],
+noCenter:['غلطی','گاڑی سیدھی ہو گئی مگر اسٹیئرنگ ابھی دائیں ہے، اس لیے گاڑی کا پچھلا حصہ مڑتا رہا۔'],
+noStop:['غلطی','سفید لکیر غائب ہو گئی مگر آپ ابھی تک ریورس کر رہے ہیں۔'],
+hitSide:['ٹکر','گاڑی کا پچھلا کونا ساتھ والی جگہ کی گاڑی سے ٹکرا گیا۔ ٹوٹی ہوئی لکیر کے قریب سے شروع کرنے سے موڑ کے لیے جگہ ملتی ہے۔'],
+hitTurn:['ٹکر','گاڑی ساتھ والی جگہ کی طرف مڑ گئی۔ گاڑی سیدھی ہوتے ہی اسٹیئرنگ درمیان میں لائیں۔'],
+hitCurb:['ٹکر','آپ پیچھے فٹ پاتھ سے ٹکرا گئے۔ لکیر آئینے سے غائب ہوتے ہی رک جائیں۔']},
+quizT:'خود کو آزمائیں',quizSub:'آپ کی سمجھ جانچنے کے لیے چھ مختصر سوالات۔',
+qUI:{count:'سوال {i} از {n}',next:'اگلا',result:'نتیجہ دیکھیں',ok:'درست',no:'غلط',score:'آپ کا اسکور: {s} از {n}',retry:'ٹیسٹ دوبارہ دیں'},
+q:[
+{q:'شروع کرنے سے پہلے گاڑی راستے میں کہاں رکھیں؟',o:['دائیں طرف کھڑی گاڑیوں کے قریب','بائیں طرف سفید ٹوٹی ہوئی لکیر کے قریب','بالکل درمیان میں، بغیر کسی حوالے کے'],e:'بائیں طرف ٹوٹی ہوئی لکیر کے قریب رہیں، اس سے گاڑی کو مڑنے کی جگہ ملتی ہے۔'},
+{q:'مطلوبہ جگہ کے بعد کتنی سفید لکیریں گنتے ہیں؟',o:['دو','تین','چار'],e:'جگہ کے بعد تین لکیریں گنیں۔'},
+{q:'تیسری لکیر کس کے برابر آنی چاہیے؟',o:['دایاں سائیڈ مرر','اگلا بمپر','پچھلا پہیہ'],e:'جب تیسری لکیر دائیں مرر کے برابر آئے تو موڑ شروع کریں۔'},
+{q:'اس وقت اسٹیئرنگ کا کیا کریں؟',o:['پورا بائیں گھمائیں','درمیان میں رکھیں','پورا دائیں گھمائیں'],e:'رکیں، پھر اسٹیئرنگ پورا دائیں گھما کر آہستہ ریورس کریں۔'},
+{q:'جب گاڑی جگہ میں سیدھی ہو جائے تو کیا کریں؟',o:['اسٹیئرنگ دائیں ہی رکھیں','اسٹیئرنگ درمیان میں لا کر سیدھا ریورس کریں','آگے جا کر دوبارہ شروع کریں'],e:'اسٹیئرنگ درمیان میں لائیں اور سیدھی لائن میں ریورس جاری رکھیں۔'},
+{q:'مکمل طور پر کب رکیں؟',o:['جب سفید لکیر آئینے سے غائب ہو جائے','جب پارکنگ سینسر کی آواز آئے','جب گاڑی کا اگلا حصہ ٹوٹی لکیر سے گزر جائے'],e:'آئینوں میں سفید لکیر دیکھتے رہیں اور غائب ہوتے ہی رک جائیں۔'}]}
+};
+
+/* ---------- Helpers ---------- */
+
+/* Bay on the left: the same maneuver mirrored */
+var LEFT={
+ar:{hint:'المشهد من منظور السائق: الموقف المطلوب على يسارك.',
+steps:{2:'دوّر المقود يسارًا'},
+steer:{c:'في المنتصف',r:'يسار إلى آخره',t:'يدور'},
+rules:{2:'عندما يحاذي الخط الثالث مرآتك الجانبية اليسرى: توقف، وضع ناقل الحركة على الرجوع، ودوّر المقود يسارًا إلى آخره.'},
+chip2:'الخط الثالث = المرآة اليسرى',
+cap:{align:['الخط الثالث عند المرآة','أصبح الخط الثالث بمحاذاة المرآة الجانبية اليسرى. توقف، وضع ناقل الحركة على الرجوع، ودوّر المقود يسارًا إلى آخره.'],
+arc:['الرجوع والمقود يسارًا','ارجع ببطء وراقب المرآتين الجانبيتين.'],
+noCenter:['خطأ','استقامت السيارة لكن المقود ما زال إلى اليسار، فاستمرت مؤخرة السيارة في الانحراف.']},
+q:{2:{o:['المرآة الجانبية اليسرى','الصدام الأمامي','العجلة الخلفية'],e:'عندما يحاذي الخط الثالث المرآة اليسرى تبدأ المناورة.'},
+3:{o:['تدوّره يمينًا إلى آخره','تبقيه في المنتصف','تدوّره يسارًا إلى آخره'],e:'توقف، ثم دوّر المقود يسارًا إلى آخره وارجع ببطء.'},
+4:{o:['تبقي المقود إلى اليسار','تعيد المقود إلى المنتصف وترجع مستقيمًا','تتقدم للأمام وتبدأ من جديد']}}},
+en:{hint:'Driver’s view: your bay is on the left.',
+steps:{2:'Full left lock'},
+steer:{c:'Centered',r:'Full left',t:'Turning'},
+rules:{2:'When the third line is level with your left mirror: stop, select reverse and turn the wheel all the way to the left.'},
+chip2:'Third line = left mirror',
+cap:{align:['Third line at the mirror','The third line is level with your left mirror. Stop, select reverse and turn the wheel all the way to the left.'],
+noCenter:['Mistake','The car is straight, but the wheel is still turned left, so the rear keeps swinging.']},
+q:{2:{o:['Your left side mirror','Your front bumper','Your rear wheel'],e:'Start the turn when the third line is level with your left mirror.'},
+3:{o:['Turn it all the way right','Keep it centered','Turn it all the way left'],e:'Stop, then turn the wheel all the way left and reverse slowly.'},
+4:{o:['Keep the wheel turned left','Center the wheel and reverse straight','Drive forward and start again']}}},
+am:{hint:'የሹፌሩ እይታ፡ የማቆሚያ ቦታው በግራዎ ነው።',
+steps:{2:'መሪውን ሙሉ ወደ ግራ'},
+steer:{c:'መሃል',r:'ሙሉ ወደ ግራ',t:'እየዞረ'},
+rules:{2:'ሦስተኛው መስመር ከግራ የጎን መስታወት ጋር ሲስተካከል፡ ያቁሙ፣ የኋላ ማርሽ ያስገቡ፣ መሪውን እስከ መጨረሻ ወደ ግራ ያዙሩ።'},
+chip2:'ሦስተኛ መስመር = ግራ መስታወት',
+cap:{align:['ሦስተኛው መስመር በመስታወቱ','ሦስተኛው መስመር ከግራ የጎን መስታወትዎ ጋር ተስተካክሏል። ያቁሙ፣ የኋላ ማርሽ ያስገቡ እና መሪውን እስከ መጨረሻ ወደ ግራ ያዙሩ።'],
+noCenter:['ስህተት','መኪናው ቀጥ ቢሆንም መሪው አሁንም ወደ ግራ ነው፤ ስለዚህ የኋላው ክፍል መዞሩን ቀጥሏል።']},
+q:{2:{o:['ከግራ የጎን መስታወት','ከፊት መከላከያ','ከኋላ ጎማ'],e:'ሦስተኛው መስመር ከግራ መስታወት ጋር ሲስተካከል መዞር ይጀምሩ።'},
+3:{o:['እስከ መጨረሻ ወደ ቀኝ ያዙሩታል','መሃል ላይ ያቆዩታል','እስከ መጨረሻ ወደ ግራ ያዙሩታል'],e:'ያቁሙ፣ መሪውን እስከ መጨረሻ ወደ ግራ አዙረው ቀስ ብለው ወደ ኋላ ይንዱ።'},
+4:{o:['መሪውን ወደ ግራ እንዳለ ያቆዩታል','መሪውን ወደ መሃል መልሰው ቀጥ ብለው ወደ ኋላ ይሄዳሉ','ወደ ፊት ወጥተው እንደገና ይጀምራሉ']}}},
+ur:{hint:'ڈرائیور کا منظر: پارکنگ کی جگہ آپ کے بائیں طرف ہے۔',
+steps:{2:'اسٹیئرنگ پورا بائیں'},
+steer:{c:'درمیان میں',r:'پورا بائیں',t:'گھوم رہا ہے'},
+rules:{2:'جب تیسری لکیر بائیں سائیڈ مرر کے برابر آئے: رکیں، ریورس گیئر لگائیں اور اسٹیئرنگ پورا بائیں گھمائیں۔'},
+chip2:'تیسری لکیر = بایاں مرر',
+cap:{align:['تیسری لکیر آئینے پر','تیسری لکیر بائیں سائیڈ مرر کے برابر آ گئی ہے۔ رکیں، ریورس گیئر لگائیں اور اسٹیئرنگ پورا بائیں گھمائیں۔'],
+noCenter:['غلطی','گاڑی سیدھی ہو گئی مگر اسٹیئرنگ ابھی بائیں ہے، اس لیے گاڑی کا پچھلا حصہ مڑتا رہا۔']},
+q:{2:{o:['بایاں سائیڈ مرر','اگلا بمپر','پچھلا پہیہ'],e:'جب تیسری لکیر بائیں مرر کے برابر آئے تو موڑ شروع کریں۔'},
+3:{o:['پورا دائیں گھمائیں','درمیان میں رکھیں','پورا بائیں گھمائیں'],e:'رکیں، پھر اسٹیئرنگ پورا بائیں گھما کر آہستہ ریورس کریں۔'},
+4:{o:['اسٹیئرنگ بائیں ہی رکھیں','اسٹیئرنگ درمیان میں لا کر سیدھا ریورس کریں','آگے جا کر دوبارہ شروع کریں']}}}
+};
+var TC={};
+function mergeArr(a,o){return o?a.map(function(x,i){return o[i]!=null?o[i]:x;}):a;}
+var S={lang:'ar',mode:0,side:'R',dir:'in',paused:false,slow:false,step:false};
+var QZ={i:0,score:0,sel:-1,done:false};
+var $=function(id){return document.getElementById('pk-'+id);};
+var ROOT=document.getElementById('mod-pk');
+var NS='http://www.w3.org/2000/svg';
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function T(){
+  var b=I18N[S.lang];if(S.side!=='L')return b;
+  var key=S.lang;if(TC[key])return TC[key];
+  var L=LEFT[S.lang],t={};for(var k in b)t[k]=b[k];
+  ['hint','chip1','chip2','steer'].forEach(function(k){if(L[k])t[k]=L[k];});
+  t.steps=mergeArr(b.steps,L.steps);t.rules=mergeArr(b.rules,L.rules);t.errs=mergeArr(b.errs,L.errs);
+  t.cap={};for(var c in b.cap)t.cap[c]=(L.cap&&L.cap[c])||b.cap[c];
+  t.q=b.q.map(function(x,i){var o=L.q&&L.q[i];if(!o)return x;var y={};for(var m in x)y[m]=x[m];for(var n in o)y[n]=o[n];return y;});
+  return (TC[key]=t);
+}
+function num(n){var d=DIGS[S.lang],s=String(n);return d?s.replace(/\d/g,function(c){return d[+c];}):s;}
+function show(el,on){el.style.display=on?'':'none';}
+function fmt(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o[k];});}
+function mk(tag,at){var el=document.createElementNS(NS,tag);for(var k in at)el.setAttribute(k,at[k]);return el;}
+
+/* ---------- Vehicle model ---------- */
+function corners(x,y,h){
+  var hx=Math.cos(h),hy=-Math.sin(h),rx=Math.sin(h),ry=Math.cos(h);
+  return [[-ROH,-HW],[FOH,-HW],[FOH,HW],[-ROH,HW]].map(function(p){return [x+p[0]*hx+p[1]*rx,y+p[0]*hy+p[1]*ry];});
+}
+function proj(P,ax){var mn=1e9,mx=-1e9;P.forEach(function(p){var v=p[0]*ax[0]+p[1]*ax[1];if(v<mn)mn=v;if(v>mx)mx=v;});return [mn,mx];}
+function hitTest(C){
+  for(var i=0;i<OBS.length;i++){
+    var o=OBS[i],B=[[o.x0,o.y0],[o.x1,o.y0],[o.x1,o.y1],[o.x0,o.y1]];
+    var axes=[[1,0],[0,1],[C[1][0]-C[0][0],C[1][1]-C[0][1]],[C[3][0]-C[0][0],C[3][1]-C[0][1]]],sep=false;
+    for(var a=0;a<4;a++){var p1=proj(C,axes[a]),p2=proj(B,axes[a]);if(p1[1]<p2[0]||p2[1]<p1[0]){sep=true;break;}}
+    if(!sep){
+      for(var j=0;j<4;j++){var c=C[j];if(c[0]>=o.x0&&c[0]<=o.x1&&c[1]>=o.y0&&c[1]<=o.y1)return c;}
+      var cx=(C[0][0]+C[2][0])/2,cy=(C[0][1]+C[2][1])/2,best=B[0],bd=1e9;
+      B.forEach(function(b){var d=Math.hypot(b[0]-cx,b[1]-cy);if(d<bd){bd=d;best=b;}});
+      return best;
+    }
+  }
+  return null;
+}
+
+/* Precompute the whole run for a scenario as fixed-time samples */
+function simulate(mode,far){
+  var y0=mode===1?Y_CLOSE:(far?Y_FAR:Y_OK);
+  var st={x:XSTART,y:y0,h:0,s:0,g:'D',k:mode===1?'keepBad':'keep',p:0,c:0};
+  var out=[],hit=null;
+  function rec(){out.push({x:st.x,y:st.y,h:st.h,s:st.s,g:st.g,k:st.k,p:st.p,c:st.c});}
+  function hold(sec,fn){var n=Math.round(sec/DT);for(var i=1;i<=n;i++){if(fn)fn(i/n);rec();}}
+  function check(){var c=hitTest(corners(st.x,st.y,st.h));if(c){hit=c;return true;}return false;}
+  // 1-2. drive forward, keep left, count the lines
+  while(st.x<X0){
+    var rem=X0-st.x,v=Math.min(60,4+1.5*rem);
+    st.x=Math.min(X0,st.x+v*DT);if(X0-st.x<0.04)st.x=X0;
+    var m=st.x+MIR,c=0;LINES.forEach(function(l){if(m>=l-0.01)c++;});st.c=c;
+    if(m>=XB-12.5){st.k='count';st.p=1;}
+    rec();
+  }
+  // 3. stop, reverse gear, full right lock
+  st.k='align';st.p=2;
+  hold(0.9,function(f){if(f>0.4)st.g='R';});
+  hold(1.0,function(f){st.s=DMAX*(0.5-0.5*Math.cos(Math.PI*f));});
+  st.s=DMAX;st.k='arc';
+  var cx=X0,cy=y0+RR,phi=0,end=mode===2?Math.PI*0.95:Math.PI/2;
+  while(phi<end-1e-9){
+    var remA=RR*(Math.PI/2-phi),va=mode===2?26:Math.min(26,5+1.0*Math.max(0,remA));
+    phi=Math.min(end,phi+va*DT/RR);
+    st.x=cx-RR*Math.sin(phi);st.y=cy-RR*Math.cos(phi);st.h=phi;
+    if(mode===2&&phi>Math.PI/2+0.02){st.k='noCenter';st.p=3;}
+    if(check())break;
+    rec();
+  }
+  if(!hit&&mode!==2){
+    // 4. centre the wheel, reverse straight
+    st.k='center';st.p=3;st.h=Math.PI/2;
+    hold(0.9,function(f){st.s=DMAX*(0.5+0.5*Math.cos(Math.PI*f));});
+    st.s=0;st.k='straight';
+    while(true){
+      var r2=STOPY-st.y,vs=mode===3?22:Math.min(22,3+1.4*Math.max(0,r2));
+      st.y+=vs*DT;
+      if(mode!==3&&st.y>=STOPY){st.y=STOPY;rec();break;}
+      if(mode!==3&&r2<7){st.k='stop';st.p=4;}
+      if(mode===3&&st.y>STOPY){st.k='noStop';st.p=4;}
+      if(check())break;
+      rec();
+      if(st.y>260)break;
+    }
+  }
+  if(hit){st.k=mode===1?'hitSide':(mode===2?'hitTurn':'hitCurb');}
+  else{st.k='done';st.g='P';}
+  st.p=5;
+  hold(0.4);
+  return {s:out,hit:hit};
+}
+
+/* ---------- Static lot ---------- */
+function drawLot(){
+  var g=$('lot'),d='';
+  for(var k=-5;k<=8;k++){var x=XB-12.5+k*BW;d+='M'+x+' '+YE+'V'+YB+'M'+x+' 75V20';}
+  d+='M0 '+YB+'H360M0 20H360';
+  g.appendChild(mk('path',{d:d,'class':'paint'}));
+  var h=$('hls');
+  LINES.forEach(function(x,i){h.appendChild(mk('path',{id:'pk-hlc'+i,'class':'hl',d:'M'+x+' '+YE+'V'+YB}));});
+  h.appendChild(mk('path',{id:'pk-hlb','class':'hl',d:'M'+(XB-12.5)+' '+YE+'V'+YB+'M'+(XB+12.5)+' '+YE+'V'+YB}));
+  var tg=$('tags');
+  LINES.forEach(function(x,i){
+    var gg=mk('g',{'class':'ptag',id:'pk-tag'+i});
+    gg.appendChild(mk('circle',{cx:x,cy:YE-6,r:5}));
+    var t=mk('text',{x:x,y:YE-6,'class':'upr'});t.textContent=String(i+1);gg.appendChild(t);
+    tg.appendChild(gg);
+  });
+  var pg=$('parked'),n=0;
+  function car(cx,yA,frontUp){
+    var col=PCOL[(n++)%PCOL.length],gg=mk('g',{});
+    gg.appendChild(mk('rect',{x:cx-9,y:yA,width:18,height:46,rx:3.2,fill:col,'class':'pk'}));
+    var wy=frontUp?yA+11:yA+46-17;
+    gg.appendChild(mk('rect',{x:cx-7.2,y:wy,width:14.4,height:6,rx:1.6,'class':'pkg'}));
+    var ry=frontUp?yA+46-9:yA+5;
+    gg.appendChild(mk('rect',{x:cx-6.6,y:ry,width:13.2,height:4,rx:1.4,'class':'pkg'}));
+    pg.appendChild(gg);
+  }
+  BOT.forEach(function(k){car(XB+k*BW,YE+4,true);});
+  TOP.forEach(function(k){car(XB+k*BW,25,false);});
+}
+
+/* ---------- Animation ---------- */
+var RUN,tv=0,last=0,fin=false,lastCap='',lastIdx=-1;
+var car=$('car'),fwL=$('fwL'),fwR=$('fwR'),mirR=$('mirR'),trail=$('trail'),sight=$('sight'),mark=$('mark');
+var cap=$('cap'),phEl=$('ph'),txEl=$('tx'),flowLis=$('flow').children,gearEls=$('gears').children;
+
+function build(){
+  RUN=simulate(S.mode,S.side==='L');
+  var pts=[],s=RUN.s;
+  for(var i=0;i<s.length;i+=6)pts.push(s[i].x.toFixed(1)+' '+s[i].y.toFixed(1));
+  var L=s[s.length-1];pts.push(L.x.toFixed(1)+' '+L.y.toFixed(1));
+  trail.setAttribute('d','M'+pts.join('L'));
+  trail.style.stroke=S.mode===0?'var(--trail)':'var(--bad)';
+  if(RUN.hit)mark.setAttribute('transform','translate('+RUN.hit[0].toFixed(1)+','+RUN.hit[1].toFixed(1)+')');
+  show(mark,false);
+}
+var BADSTEP={1:0,2:3,3:4};
+var RED={keepBad:1,noCenter:1,noStop:1,hitSide:1,hitTurn:1,hitCurb:1};
+
+function setCap(f){
+  var id=S.lang+'|'+S.mode+'|'+f.k+'|'+(f.k==='count'?f.c:'');
+  if(id===lastCap)return;lastCap=id;
+  var a=T().cap[f.k];
+  phEl.textContent=a[0];
+  txEl.textContent=fmt(a[1],{N:num(f.c),T:num(3)});
+  cap.setAttribute('data-k',f.k==='done'?'g':(RED[f.k]?'r':'a'));
+}
+function render(t){
+  var s=RUN.s,i=Math.min(s.length-1,Math.floor(t/DT)),f=s[i];
+  fin=i>=s.length-1;
+  car.setAttribute('transform','translate('+f.x.toFixed(2)+','+f.y.toFixed(2)+') rotate('+(-f.h/D).toFixed(2)+')');
+  var wa=f.s.toFixed(1);
+  fwL.setAttribute('transform','translate(27,-8.7) rotate('+wa+')');
+  fwR.setAttribute('transform','translate(27,8.7) rotate('+wa+')');
+  // reference guides
+  var counting=f.k==='count'||f.k==='align'||f.k==='keep'||f.k==='keepBad';
+  for(var j=0;j<3;j++){
+    $('tag'+j).classList.toggle('on',f.c>j&&(f.p<=2));
+    $('hlc'+j).setAttribute('class','hl'+((j===2&&(f.k==='align'||(f.k==='count'&&f.c===3)))?' on':''));
+  }
+  var watchLine=f.k==='straight'||f.k==='stop'||f.k==='noStop';
+  $('hlb').setAttribute('class','hl'+(watchLine?' on':(f.k==='done'?' ok':'')));
+  mirR.classList.toggle('on',f.k==='count'||f.k==='align'||watchLine);
+  if(f.k==='align'){
+    var mx=f.x+MIR,my=f.y+HW+2.8;
+    sight.setAttribute('d','M'+mx.toFixed(1)+' '+my.toFixed(1)+'V'+(YE+18));show(sight,true);
+  }else show(sight,false);
+  show(mark,fin&&!!RUN.hit);
+  // dashboard
+  Array.prototype.forEach.call(gearEls,function(el){el.classList.toggle('on',el.dataset.g===f.g);});
+  $('pGear').classList.toggle('on',f.g==='R');
+  $('wheelG').setAttribute('transform','rotate('+((S.side==='L'?-1:1)*f.s/DMAX*540).toFixed(1)+' 16 16)');
+  var stt=T().steer;
+  $('vSteer').textContent=f.s<0.3?stt.c:(f.s>DMAX-0.3?stt.r:stt.t);
+  $('pSteer').classList.toggle('on',f.s>0.3);
+  $('vLines').textContent=num(f.c)+' / '+num(3);
+  $('pLines').classList.toggle('on',f.p===1||f.k==='align');
+  setCap(f);
+  // step strip
+  var idx=f.p,bad=BADSTEP[S.mode];
+  for(var q=0;q<5;q++){
+    var stt2=q<idx?'done':(q===idx?'cur':'todo');
+    if(S.mode&&q===bad&&(idx>=bad||(S.mode===1)))stt2=(idx>=bad)?'bad':stt2;
+    if(flowLis[q].getAttribute('data-s')!==stt2)flowLis[q].setAttribute('data-s',stt2);
+  }
+  // step-by-step pause
+  if(S.step&&!reduce&&idx!==lastIdx&&lastIdx>=0&&idx<5&&!fin){S.paused=true;updPause();}
+  lastIdx=idx;
+}
+function updPause(){
+  var b=$('bPause'),c=T().ctl;
+  if(S.paused&&S.step&&!fin){b.textContent=c.next;b.classList.add('next');}
+  else{b.textContent=S.paused?c.play:c.pause;b.classList.remove('next');}
+}
+function tick(now){
+  if(ROOT.hidden){last=now;requestAnimationFrame(tick);return;}
+  if(!last)last=now;
+  var dt=Math.min(0.05,(now-last)/1000);last=now;
+  if(!S.paused&&!fin){tv+=dt*(S.slow?0.45:1);render(tv);}
+  requestAnimationFrame(tick);
+}
+function restart(){
+  tv=0;fin=false;lastCap='';lastIdx=-1;S.paused=false;
+  build();
+  if(reduce){tv=1e4;}
+  render(tv);updPause();
+}
+
+/* ---------- Quiz ---------- */
+function renderQuiz(){
+  var t=T(),U=t.qUI,Q=t.q,n=Q.length;
+  $('qbar').style.width=(100*(QZ.done?n:QZ.i+(QZ.sel>=0?1:0))/n)+'%';
+  show($('qbody'),!QZ.done);show($('qres'),QZ.done);
+  $('qretry').textContent=U.retry;
+  if(QZ.done){$('qscore').textContent=fmt(U.score,{s:num(QZ.score),n:num(n)});return;}
+  var q=Q[QZ.i];
+  $('qcount').textContent=fmt(U.count,{i:num(QZ.i+1),n:num(n)});
+  $('qtext').textContent=q.q;
+  var box=$('qopts');box.textContent='';
+  q.o.forEach(function(txt,k){
+    var b=document.createElement('button');b.className='opt';b.textContent=txt;b.setAttribute('data-k',k);
+    if(QZ.sel>=0){
+      if(k===COR[QZ.i])b.setAttribute('data-s','ok');
+      else if(k===QZ.sel)b.setAttribute('data-s','no');
+      else b.setAttribute('data-s','lock');
+    }
+    box.appendChild(b);
+  });
+  var answered=QZ.sel>=0;
+  show($('qfb'),answered);show($('qnext'),answered);
+  if(answered){
+    $('qfbh').textContent=QZ.sel===COR[QZ.i]?U.ok:U.no;
+    $('qfbt').textContent=q.e;
+    $('qnext').textContent=QZ.i<n-1?U.next:U.result;
+  }
+}
+
+/* ---------- Language ---------- */
+function applyLang(){
+  var t=T(),app=ROOT;
+  Array.prototype.forEach.call(app.querySelectorAll('[data-i]'),function(el){el.textContent=t[el.getAttribute('data-i')];});
+  Array.prototype.forEach.call($('modes').children,function(b){b.textContent=t.modes[+b.dataset.m];});
+  Array.prototype.forEach.call($('sides').children,function(b,i){b.lastChild.textContent=t.sides[i];});
+  Array.prototype.forEach.call($('dirs').children,function(b,i){b.lastChild.textContent=t.dirs[i];});
+  $('laneIn').lastChild.textContent=t.lanes[0];$('laneOut').lastChild.textContent=t.lanes[1];
+  Array.prototype.forEach.call(flowLis,function(li,i){li.children[0].textContent=num(i+1);li.children[1].textContent=t.steps[i];});
+  var rl=$('rules');rl.textContent='';
+  t.rules.forEach(function(s,i){var li=document.createElement('li'),n=document.createElement('span'),x=document.createElement('span');n.className='n';n.textContent=num(i+1);x.textContent=s;li.appendChild(n);li.appendChild(x);rl.appendChild(li);});
+  var er=$('errs');er.textContent='';
+  t.errs.forEach(function(s){var li=document.createElement('li');li.textContent=s;er.appendChild(li);});
+  $('bReplay').textContent=t.ctl.replay;
+  $('bSlow').textContent=t.ctl.slow;
+  $('bStep').textContent=t.ctl.step;
+  updPause();
+  for(var j=0;j<3;j++)$('tag'+j).lastChild.textContent=num(j+1);
+  $('scene').setAttribute('aria-label',t.title);
+  renderQuiz();
+  lastCap='';
+}
+function paint(){
+  Array.prototype.forEach.call($('modes').children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.m===S.mode));});
+  Array.prototype.forEach.call($('sides').children,function(b){b.setAttribute('aria-pressed',String(b.dataset.side===S.side));});
+  Array.prototype.forEach.call($('dirs').children,function(b){b.setAttribute('aria-pressed',String(b.dataset.dir===S.dir));});
+}
+/* Physical lot is fixed: inbound lane (south, heading east), return lane (north, heading west).
+   The run is simulated with the bay on the driver's right while heading east, then mirrored into place. */
+function applySide(){
+  var fy=(S.dir==='in')===(S.side==='L'),fx=S.dir==='out';
+  var sx=fx?-1:1,sy=fy?-1:1;
+  $('world').setAttribute('transform',(fx||fy)?'matrix('+sx+' 0 0 '+sy+' '+(fx?360:0)+' '+(fy?220:0)+')':'');
+  Array.prototype.forEach.call($('scene').querySelectorAll('.upr'),function(el){
+    var x=parseFloat(el.getAttribute('x')),y=parseFloat(el.getAttribute('y'));
+    if(fx||fy)el.setAttribute('transform','matrix('+sx+' 0 0 '+sy+' '+(fx?2*x:0)+' '+(fy?2*y:0)+')');else el.removeAttribute('transform');
+  });
+  $('laneIn').classList.toggle('on',S.dir==='in');$('laneOut').classList.toggle('on',S.dir==='out');
+}
+function setSide(v){
+  if(v!=='L'&&v!=='R')return;S.side=v;
+  try{localStorage.setItem('pk-side',v);}catch(e){}
+  applySide();paint();applyLang();restart();
+}
+function setDir(v){
+  if(v!=='in'&&v!=='out')return;S.dir=v;
+  try{localStorage.setItem('pk-dir',v);}catch(e){}
+  applySide();paint();restart();
+}
+
+$('modes').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;S.mode=+b.dataset.m;paint();restart();});
+$('dirs').addEventListener('click',function(ev){var b=ev.target.closest('button');if(b&&b.dataset.dir!==S.dir)setDir(b.dataset.dir);});
+$('sides').addEventListener('click',function(ev){var b=ev.target.closest('button');if(b&&b.dataset.side!==S.side)setSide(b.dataset.side);});
+$('scene').addEventListener('click',restart);
+$('bReplay').addEventListener('click',restart);
+$('bPause').addEventListener('click',function(){if(fin){restart();return;}S.paused=!S.paused;updPause();});
+$('bSlow').addEventListener('click',function(){S.slow=!S.slow;this.setAttribute('aria-pressed',String(S.slow));});
+$('bStep').addEventListener('click',function(){S.step=!S.step;this.setAttribute('aria-pressed',String(S.step));if(!S.step&&S.paused){S.paused=false;}updPause();});
+$('qopts').addEventListener('click',function(ev){
+  var b=ev.target.closest('button');if(!b||QZ.sel>=0)return;
+  QZ.sel=+b.getAttribute('data-k');
+  if(QZ.sel===COR[QZ.i])QZ.score++;
+  renderQuiz();
+});
+$('qnext').addEventListener('click',function(){
+  if(QZ.i<T().q.length-1){QZ.i++;QZ.sel=-1;}else{QZ.done=true;}
+  renderQuiz();
+});
+$('qretry').addEventListener('click',function(){QZ.i=0;QZ.score=0;QZ.sel=-1;QZ.done=false;renderQuiz();});
+
+drawLot();
+try{var sv0=localStorage.getItem('pk-side');if(sv0==='L')S.side='L';var dv0=localStorage.getItem('pk-dir');if(dv0==='out')S.dir='out';}catch(e){}
+applySide();
+window.PK={I18N:I18N,simulate:simulate,S:S,seek:function(t){tv=t;render(tv);},
+setLang:function(l){S.lang=l;applyLang();render(tv);},
+activate:function(){restart();},
+start:function(l){S.lang=l;build();applyLang();paint();if(reduce){tv=1e4;}render(tv);requestAnimationFrame(tick);}};
+})();
+</script>
+<script>
+(function(){
+var SH={
+ar:{brand:'منصة تدريب السائقين',bsub:'وحدات تفاعلية لمهارات القيادة',tabs:'وحدات التدريب',d:['الدخول والالتزام بالمسار والخروج','الرجوع إلى موقف عمودي خطوة بخطوة']},
+en:{brand:'Driver Training Platform',bsub:'Interactive modules for driving skills',tabs:'Training modules',d:['Enter, hold your lane, exit','Back into a perpendicular bay, step by step']},
+am:{brand:'የአሽከርካሪዎች ስልጠና መድረክ',bsub:'ለመንዳት ክህሎት በይነተገናኝ ክፍሎች',tabs:'የስልጠና ክፍሎች',d:['መግባት፣ በመስመር መቆየት፣ መውጣት','ወደ ቋሚ ቦታ ወደ ኋላ መግባት፣ ደረጃ በደረጃ']},
+ur:{brand:'ڈرائیور ٹریننگ پلیٹ فارم',bsub:'ڈرائیونگ مہارتوں کے لیے انٹرایکٹو ماڈیولز',tabs:'تربیتی ماڈیولز',d:['داخل ہونا، لین میں رہنا، نکلنا','عمودی جگہ میں ریورس، قدم بہ قدم']}};
+var MODS={rb:{api:window.RB,slug:'roundabout'},pk:{api:window.PK,slug:'parking'}};
+var st={lang:'ar',mod:'rb'};
+var app=document.getElementById('app');
+function g(id){return document.getElementById(id);}
+function paintShell(){
+  var t=MODS[st.mod].api.I18N[st.lang],sh=SH[st.lang];
+  app.setAttribute('lang',st.lang);app.setAttribute('dir',t.dir);app.setAttribute('data-mod',st.mod);
+  document.documentElement.setAttribute('lang',st.lang);document.documentElement.setAttribute('dir',t.dir);
+  g('brandName').textContent=sh.brand;g('brandSub').textContent=sh.bsub;
+  g('hEyebrow').textContent=t.eyebrow;g('hTitle').textContent=t.title;g('hSub').textContent=t.sub;g('hBy').textContent=t.by;
+  g('mods').setAttribute('aria-label',sh.tabs);
+  Array.prototype.forEach.call(g('mods').children,function(b,i){
+    var m=b.dataset.mod;
+    b.querySelector('.mt').textContent=MODS[m].api.I18N[st.lang].title;
+    b.querySelector('.md').textContent=sh.d[i];
+    b.setAttribute('aria-selected',String(m===st.mod));b.tabIndex=m===st.mod?0:-1;
+  });
+  Array.prototype.forEach.call(g('langs').children,function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===st.lang));});
+  g('mod-rb').hidden=st.mod!=='rb';g('mod-pk').hidden=st.mod!=='pk';
+  document.title=t.title+' | '+sh.brand;
+}
+function writeHash(){try{var h=MODS[st.mod].slug+'-'+st.lang;if(location.hash.slice(1)!==h)history.replaceState(null,'','#'+h);}catch(e){}}
+function readHash(){
+  var h=(location.hash||'').slice(1),p=h.split('-'),r={};
+  if(SH[h]){r.lang=h;r.mod='rb';}
+  else{for(var k in MODS)if(MODS[k].slug===p[0])r.mod=k;if(SH[p[1]])r.lang=p[1];}
+  return r;
+}
+function setLang(l){
+  if(!SH[l]||l===st.lang)return;st.lang=l;
+  try{localStorage.setItem('rb-lang',l);}catch(e){}
+  MODS.rb.api.setLang(l);MODS.pk.api.setLang(l);paintShell();writeHash();
+}
+function setMod(m,focus){
+  if(!MODS[m]||m===st.mod)return;st.mod=m;paintShell();writeHash();MODS[m].api.activate();
+  if(focus)g('mods').querySelector('[data-mod="'+m+'"]').focus();
+}
+g('langs').addEventListener('click',function(ev){var b=ev.target.closest('button');if(b)setLang(b.dataset.lang);});
+g('mods').addEventListener('click',function(ev){var b=ev.target.closest('.mtab');if(b)setMod(b.dataset.mod);});
+g('mods').addEventListener('keydown',function(ev){
+  if(ev.key!=='ArrowLeft'&&ev.key!=='ArrowRight')return;
+  ev.preventDefault();setMod(st.mod==='rb'?'pk':'rb',true);
+});
+window.addEventListener('hashchange',function(){var r=readHash();if(r.lang&&r.lang!==st.lang)setLang(r.lang);if(r.mod&&r.mod!==st.mod)setMod(r.mod);});
+try{var sv=localStorage.getItem('rb-lang');if(SH[sv])st.lang=sv;}catch(e){}
+var r0=readHash();if(r0.lang)st.lang=r0.lang;if(r0.mod)st.mod=r0.mod;
+paintShell();
+MODS.rb.api.start(st.lang);MODS.pk.api.start(st.lang);
+writeHash();
+})();
+</script>
+</body>
+</html>
